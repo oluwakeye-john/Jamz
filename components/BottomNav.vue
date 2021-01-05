@@ -1,13 +1,13 @@
 <template>
   <div class="bottom-container">
-    <button>
-      <font-awesome-icon class="icon" :icon="['fas', 'backward']" />
+    <button class="icon">
+      <font-awesome-icon :icon="['fas', 'backward']" />
     </button>
-    <button>
-      <font-awesome-icon class="icon icon--play" :icon="['fas', 'play']" />
+    <button class="icon">
+      <font-awesome-icon class="icon--play" :icon="['fas', 'play']" />
     </button>
-    <button>
-      <font-awesome-icon class="icon" :icon="['fas', 'forward']" />
+    <button class="icon">
+      <font-awesome-icon :icon="['fas', 'forward']" />
     </button>
   </div>
 </template>
@@ -31,6 +31,10 @@ export default {}
 
 .icon {
   margin: 0 1rem;
+
+  &:focus {
+    outline: none;
+  }
 
   &--play {
     font-size: 24px;
