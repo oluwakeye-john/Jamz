@@ -6,6 +6,8 @@ module.exports = {
         bgColor1: '#121216',
         bgColor2: '#23232D',
         bgColor3: '#191922',
+        border: '#32323d',
+        lightText: '#92929D',
       },
     },
   },

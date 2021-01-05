@@ -1,5 +1,5 @@
 <template>
-  <div class="bottom-container">
+  <div class="bottom-container border-border">
     <button class="icon">
       <font-awesome-icon :icon="['fas', 'backward']" />
     </button>
@@ -18,6 +18,7 @@ export default {}
 
 <style lang="scss" scoped>
 .bottom-container {
+  border-width: 1px;
   @apply bg-bgColor2;
   position: fixed;
   bottom: 0;
@@ -26,7 +27,11 @@ export default {}
   padding: 1.5rem 50px;
 
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
+
+  @media (max-width: 768px) {
+    justify-content: center;
+  }
 }
 
 .icon {

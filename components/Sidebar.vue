@@ -1,12 +1,14 @@
 <template>
   <div class="sidebar-container">
-    <div :class="{ 'sidebar-open': sidebar }" class="sidebar">
+    <div :class="{ 'sidebar-open': sidebar }" class="sidebar border-border">
       <button class="close-button" @click="closeSidebar">
         <font-awesome-icon :icon="['fas', 'times']" />
       </button>
       <h1 class="text-3xl text-primary mb-20 font-bold">
-        <font-awesome-icon class="logo" :icon="['fas', 'headphones']" />
-        <span class="ml-2">Jamz</span>
+        <nuxt-link to="/">
+          <font-awesome-icon class="logo" :icon="['fas', 'headphones']" />
+          <span class="ml-2">Jamz</span>
+        </nuxt-link>
       </h1>
 
       <div
@@ -59,6 +61,7 @@ export default {
 }
 .sidebar {
   width: 250px;
+  border-width: 1px;
   min-height: 100vh;
   @apply bg-bgColor3;
   position: fixed;
@@ -105,41 +108,5 @@ export default {
 .logo {
   display: inline-block;
   animation: shake 2.5s ease-in-out infinite alternate;
-}
-
-@keyframes shake {
-  0% {
-    transform: translate(1px, 1px) rotate(0deg);
-  }
-  10% {
-    transform: translate(-1px, -2px) rotate(-1deg);
-  }
-  20% {
-    transform: translate(-3px, 0px) rotate(1deg);
-  }
-  30% {
-    transform: translate(3px, 2px) rotate(0deg);
-  }
-  40% {
-    transform: translate(1px, -1px) rotate(1deg);
-  }
-  50% {
-    transform: translate(-1px, 2px) rotate(-1deg);
-  }
-  60% {
-    transform: translate(-3px, 1px) rotate(0deg);
-  }
-  70% {
-    transform: translate(3px, 1px) rotate(-1deg);
-  }
-  80% {
-    transform: translate(-1px, -1px) rotate(1deg);
-  }
-  90% {
-    transform: translate(1px, 2px) rotate(0deg);
-  }
-  100% {
-    transform: translate(1px, -2px) rotate(-1deg);
-  }
 }
 </style>

@@ -1,10 +1,13 @@
 <template>
   <div class="container">
     <sidebar />
-    <div>
+    <div style="flex: 1">
       <navbar />
       <div class="content">
         <h1>Hello world</h1>
+        <p>Hello world</p>
+        <p>Hello world</p>
+        <p>Hello world</p>
         <p>Hello world</p>
         <p>Hello world</p>
         <p>Hello world</p>
