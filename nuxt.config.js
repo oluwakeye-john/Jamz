@@ -28,7 +28,15 @@ export default {
     '@nuxt/typescript-build',
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
+    '@nuxtjs/fontawesome',
   ],
+
+  fontawesome: {
+    icons: {
+      solid: true,
+      brands: true,
+    },
+  },
 
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
@@ -43,4 +51,17 @@ export default {
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {},
+
+  server: {
+    host: '0',
+  },
+
+  pwa: {
+    meta: {
+      theme_color: '#23232D',
+    },
+    manifest: {
+      theme_color: '#23232D',
+    },
+  },
 }
