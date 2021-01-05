@@ -3,8 +3,8 @@
     <button class="icon">
       <font-awesome-icon :icon="['fas', 'backward']" />
     </button>
-    <button class="icon">
-      <font-awesome-icon class="icon--play" :icon="['fas', 'play']" />
+    <button class="icon icon--play">
+      <font-awesome-icon :icon="['fas', 'play']" />
     </button>
     <button class="icon">
       <font-awesome-icon :icon="['fas', 'forward']" />
@@ -36,12 +36,14 @@ export default {}
 
 .icon {
   margin: 0 1rem;
+  opacity: 0.6;
 
   &:focus {
     outline: none;
   }
 
   &--play {
+    opacity: 1;
     font-size: 24px;
   }
 }
