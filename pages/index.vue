@@ -1,39 +1,10 @@
 <template>
   <div class="container">
     <sidebar />
-    <div style="flex: 1">
+    <div style="flex: 1; overflow: hidden">
       <navbar />
       <div class="content">
-        <h1>Hello world</h1>
-        <p>Hello world</p>
-        <p>Hello world</p>
-        <p>Hello world</p>
-        <p>Hello world</p>
-        <p>Hello world</p>
-        <p>Hello world</p>
-        <p>Hello world</p>
-        <p>Hello world</p>
-        <p>Hello world</p>
-        <p>Hello world</p>
-        <p>Hello world</p>
-        <p>Hello world</p>
-        <p>Hello world</p>
-        <p>Hello world</p>
-        <p>Hello world</p>
-        <p>Hello world</p>
-        <p>Hello world</p>
-        <p>Hello world</p>
-        <p>Hello world</p>
-        <p>Hello world</p>
-        <p>Hello world</p>
-        <p>Hello world</p>
-        <p>Hello world</p>
-        <p>Hello world</p>
-        <p>Hello world</p>
-        <p>Hello world</p>
-        <p>Hello world</p>
-        <p>Hello world</p>
-        <p>Hello world</p>
+        <slide-list />
       </div>
     </div>
     <bottom-nav />
@@ -58,6 +29,7 @@ export default Vue.extend({})
 }
 
 .content {
+  width: 100%;
   padding: 2rem;
 }
 </style>
