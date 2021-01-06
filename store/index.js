@@ -5,6 +5,8 @@ export const state = () => ({
   isPlaying: false,
   currentTrack: {
     url: '',
+    name: 'Yosemite',
+    artist: 'Travis Scott',
   },
 })
 

@@ -27,6 +27,11 @@ export class Player {
     } else {
       this.audio?.play()
       this.isPlaying = true
+
+      const duration = this.audio?.duration
+      const currentTime = this.audio?.currentTime
+      const volumn = this.audio?.volume
+      console.log({ duration, currentTime, volumn })
     }
   }
 

@@ -54,7 +54,6 @@ export default {
   }
 
   &--play {
-    opacity: 1;
     font-size: 24px;
   }
 }

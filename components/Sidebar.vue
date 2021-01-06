@@ -20,7 +20,7 @@
         :key="index"
         class="my-8 sidebar__item"
       >
-        <nuxt-link to="#">
+        <nuxt-link :to="item.path" active-class="text-primary">
           <font-awesome-icon :icon="['fas', item.icon]" />
           <span class="ml-2">
             {{ item.name }}
@@ -37,9 +37,9 @@ export default {
   data() {
     return {
       sidebarItems: [
-        { name: 'Music', path: '#', icon: 'music' },
-        { name: 'Browse', path: '#', icon: 'search' },
-        { name: 'Favorite', path: '#', icon: 'heart' },
+        { name: 'Music', path: '/', icon: 'music' },
+        { name: 'Browse', path: '/browse', icon: 'search' },
+        { name: 'Favorites', path: '/favorite', icon: 'heart' },
       ],
     }
   },
@@ -66,6 +66,7 @@ export default {
     width: 0;
   }
 }
+
 .sidebar {
   width: 250px;
   border-width: 1px;
@@ -85,6 +86,8 @@ export default {
 
   &__item {
     transition: 0.3s;
+    font-weight: bolder;
+    font-size: 16px;
     &:hover {
       opacity: 0.7;
     }
