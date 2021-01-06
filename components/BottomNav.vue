@@ -18,6 +18,7 @@ export default {}
 
 <style lang="scss" scoped>
 .bottom-container {
+  z-index: 2;
   border-width: 1px;
   @apply bg-bgColor2;
   position: fixed;

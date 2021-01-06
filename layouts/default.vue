@@ -27,6 +27,12 @@ body {
   margin: 0;
 }
 
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 @keyframes shake {
   0% {
     transform: translate(1px, 1px) rotate(0deg);

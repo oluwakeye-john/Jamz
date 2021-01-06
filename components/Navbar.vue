@@ -77,6 +77,7 @@ export default {
   .avatar {
     align-self: flex-end;
     font-size: 25px;
+    cursor: pointer;
   }
 }
 </style>

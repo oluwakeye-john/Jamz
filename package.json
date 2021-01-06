@@ -24,7 +24,9 @@
     "@nuxtjs/axios": "^5.12.2",
     "@nuxtjs/pwa": "^3.0.2",
     "core-js": "^3.6.5",
-    "nuxt": "^2.14.6"
+    "nuxt": "^2.14.6",
+    "swiper": "^6.4.5",
+    "vue-awesome-swiper": "^4.1.1"
   },
   "devDependencies": {
     "@fortawesome/free-brands-svg-icons": "^5.15.1",

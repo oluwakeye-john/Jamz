@@ -1,39 +1,14 @@
 <template>
   <div class="container">
     <sidebar />
-    <div style="flex: 1">
+    <div style="flex: 1; overflow: hidden" class="mb-20">
       <navbar />
       <div class="content">
-        <h1>Hello world</h1>
-        <p>Hello world</p>
-        <p>Hello world</p>
-        <p>Hello world</p>
-        <p>Hello world</p>
-        <p>Hello world</p>
-        <p>Hello world</p>
-        <p>Hello world</p>
-        <p>Hello world</p>
-        <p>Hello world</p>
-        <p>Hello world</p>
-        <p>Hello world</p>
-        <p>Hello world</p>
-        <p>Hello world</p>
-        <p>Hello world</p>
-        <p>Hello world</p>
-        <p>Hello world</p>
-        <p>Hello world</p>
-        <p>Hello world</p>
-        <p>Hello world</p>
-        <p>Hello world</p>
-        <p>Hello world</p>
-        <p>Hello world</p>
-        <p>Hello world</p>
-        <p>Hello world</p>
-        <p>Hello world</p>
-        <p>Hello world</p>
-        <p>Hello world</p>
-        <p>Hello world</p>
-        <p>Hello world</p>
+        <div v-if="fetching">
+          <slide-list />
+          <slide-list />
+        </div>
+        <page-spinner v-else />
       </div>
     </div>
     <bottom-nav />
@@ -42,8 +17,13 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { mapState } from 'vuex'
 
-export default Vue.extend({})
+export default Vue.extend({
+  computed: {
+    ...mapState({ fetching: (state: any) => state.fetching }),
+  },
+})
 </script>
 
 <style lang="scss" scoped>
@@ -59,5 +39,9 @@ export default Vue.extend({})
 
 .content {
   padding: 2rem;
+
+  @media (max-width: 768px) {
+    padding: 2rem 1.5rem;
+  }
 }
 </style>
