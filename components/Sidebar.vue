@@ -6,7 +6,11 @@
       </button>
       <h1 class="text-3xl text-primary mb-20 font-bold">
         <nuxt-link to="/">
-          <font-awesome-icon class="logo" :icon="['fas', 'headphones']" />
+          <font-awesome-icon
+            class="logo"
+            :class="{ dance: isPlaying }"
+            :icon="['fas', 'headphones']"
+          />
           <span class="ml-2">Jamz</span>
         </nuxt-link>
       </h1>
@@ -40,7 +44,10 @@ export default {
     }
   },
   computed: {
-    ...mapState({ sidebar: (state) => state.layout.sidebar }),
+    ...mapState({
+      sidebar: (state) => state.layout.sidebar,
+      isPlaying: (state) => state.isPlaying,
+    }),
   },
   methods: {
     ...mapActions({ toggleSidebarAction: 'layout/toggleSidebarAction' }),
@@ -103,10 +110,5 @@ export default {
 
 .sidebar-open {
   transform: translateX(0);
-}
-
-.logo {
-  display: inline-block;
-  animation: shake 2.5s ease-in-out infinite alternate;
 }
 </style>

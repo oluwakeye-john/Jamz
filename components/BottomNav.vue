@@ -3,8 +3,9 @@
     <button class="icon">
       <font-awesome-icon :icon="['fas', 'backward']" />
     </button>
-    <button class="icon icon--play">
-      <font-awesome-icon :icon="['fas', 'play']" />
+    <button class="icon icon--play" @click="togglePlaying">
+      <font-awesome-icon v-if="!isPlaying" :icon="['fas', 'play']" />
+      <font-awesome-icon v-else :icon="['fas', 'pause']" />
     </button>
     <button class="icon">
       <font-awesome-icon :icon="['fas', 'forward']" />
@@ -13,7 +14,16 @@
 </template>
 
 <script>
-export default {}
+import { mapState, mapActions } from 'vuex'
+
+export default {
+  computed: {
+    ...mapState({ isPlaying: (state) => state.isPlaying }),
+  },
+  methods: {
+    ...mapActions({ togglePlaying: 'togglePlaying' }),
+  },
+}
 </script>
 
 <style lang="scss" scoped>

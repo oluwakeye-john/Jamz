@@ -32,6 +32,9 @@ body {
     transform: rotate(360deg);
   }
 }
+.dance {
+  animation: shake 2.5s ease-in-out infinite alternate;
+}
 
 @keyframes shake {
   0% {

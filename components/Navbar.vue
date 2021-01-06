@@ -1,7 +1,11 @@
 <template>
   <div class="navbar border-border text-lightText">
     <div class="toggler" @click="openSidebar">
-      <font-awesome-icon class="text-primary" :icon="['fas', 'headphones']" />
+      <font-awesome-icon
+        class="text-primary"
+        :class="{ dance: isPlaying }"
+        :icon="['fas', 'headphones']"
+      />
     </div>
 
     <div class="input-container">
@@ -15,8 +19,11 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 export default {
+  computed: {
+    ...mapState({ isPlaying: (state) => state.isPlaying }),
+  },
   methods: {
     ...mapActions({ toggleSidebarAction: 'layout/toggleSidebarAction' }),
 
@@ -54,7 +61,6 @@ export default {
       margin-right: 2rem;
 
       display: inline-block;
-      animation: shake 2.5s ease-in-out infinite alternate;
     }
   }
 
