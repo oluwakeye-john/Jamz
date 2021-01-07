@@ -1,14 +1,23 @@
 <template>
   <div class="bottom-container border-border">
     <div>
-      <button class="icon">
+      <button :disabled="!src" class="icon">
         <font-awesome-icon :icon="['fas', 'backward']" />
       </button>
-      <button class="icon icon--play" @click="togglePlaying">
-        <font-awesome-icon v-if="!isPlaying" :icon="['fas', 'play']" />
+      <button
+        :disabled="!src || isLoadingTrack"
+        class="icon icon--play"
+        @click="togglePlaying"
+      >
+        <font-awesome-icon
+          v-if="isLoadingTrack"
+          class="rotateClass"
+          :icon="['fas', 'redo']"
+        />
+        <font-awesome-icon v-else-if="!isPlaying" :icon="['fas', 'play']" />
         <font-awesome-icon v-else :icon="['fas', 'pause']" />
       </button>
-      <button class="icon">
+      <button :disabled="!src" class="icon">
         <font-awesome-icon :icon="['fas', 'forward']" />
       </button>
     </div>
@@ -21,6 +30,7 @@
           class="progress"
           :min="0"
           :max="flooredDuration"
+          :disabled="!src"
           tooltip="none"
           rail-style="background:#92929D"
           @change="handleSeek"
@@ -47,9 +57,11 @@ export default {
   },
   computed: {
     ...mapState({
-      isPlaying: (state) => state.isPlaying,
-      currentTrack: (state) => state.currentTrack,
-      currentTime: (state) => state.currentTrack.currentTime,
+      isPlaying: (state) => state.player.isPlaying,
+      isLoadingTrack: (state) => state.player.isLoadingTrack,
+      currentTrack: (state) => state.player.currentTrack,
+      currentTime: (state) => state.player.currentTrack.currentTime,
+      src: (state) => state.player.currentTrack.src,
     }),
     filteredDuration() {
       return convertSecondsToTime(this.currentTrack.duration)
@@ -69,9 +81,9 @@ export default {
   },
   methods: {
     ...mapActions({
-      togglePlaying: 'togglePlaying',
-      handleSeekAction: 'seekAction',
-      checkTime: 'checkTime',
+      togglePlaying: 'player/togglePlaying',
+      handleSeekAction: 'player/seekAction',
+      checkTime: 'player/checkTime',
     }),
     handleSeek(val) {
       this.handleSeekAction(val)
@@ -147,6 +159,11 @@ export default {
 
   &:focus {
     outline: none;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: default;
   }
 
   &--play {

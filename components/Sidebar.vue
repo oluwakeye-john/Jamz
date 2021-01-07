@@ -46,7 +46,7 @@ export default {
   computed: {
     ...mapState({
       sidebar: (state) => state.layout.sidebar,
-      isPlaying: (state) => state.isPlaying,
+      isPlaying: (state) => state.player.isPlaying,
     }),
   },
   methods: {

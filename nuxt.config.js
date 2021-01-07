@@ -46,8 +46,13 @@ export default {
     '@nuxtjs/pwa',
   ],
 
-  // Axios module configuration (https://go.nuxtjs.dev/config-axios)
-  axios: {},
+  env: {
+    baseURL: process.env.NUXT_ENV_BASE_URL,
+  },
+
+  axios: {
+    baseURL: 'http://localhost:5001', // Used as fallback if no runtime config is provided
+  },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {},

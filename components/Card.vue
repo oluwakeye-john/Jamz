@@ -1,17 +1,31 @@
 <template>
   <div class="card">
     <div class="card__image-container">
-      <img src="https://picsum.photos/300" />
-      <div>
+      <img :src="item.imageUrl" />
+      <div @click="playTrack">
         <font-awesome-icon :icon="['fas', 'play']" />
       </div>
     </div>
-    <p class="text-sm my-2">An infinite mix of favorites and new tracks</p>
+    <p class="text-sm my-2">{{ item.name }}</p>
   </div>
 </template>
 
 <script>
-export default {}
+import { mapActions } from 'vuex'
+export default {
+  props: {
+    item: {
+      type: Object,
+      default: () => ({}),
+    },
+  },
+  methods: {
+    ...mapActions({ setTrack: 'player/setTrack' }),
+    playTrack() {
+      this.setTrack(this.item)
+    },
+  },
+}
 </script>
 
 <style lang="scss" scoped>
@@ -26,6 +40,12 @@ export default {}
 
     @media (max-width: 768px) {
       height: 170px;
+    }
+
+    &:hover {
+      img {
+        opacity: 0.7;
+      }
     }
 
     & > div {
@@ -48,6 +68,7 @@ export default {}
     }
 
     img {
+      transition: 0.3s;
       position: absolute;
       top: 0;
       left: 0;

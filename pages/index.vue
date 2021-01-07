@@ -4,9 +4,9 @@
     <div style="flex: 1; overflow: hidden" class="mb-20">
       <navbar />
       <div class="content">
-        <div v-if="fetching">
-          <slide-list />
-          <slide-list />
+        <div v-if="!fetching">
+          <slide-list title="Made for you" :data="songs" />
+          <slide-list title="Popular playlists" :data="songs" />
         </div>
         <page-spinner v-else />
       </div>
@@ -21,7 +21,10 @@ import { mapState } from 'vuex'
 
 export default Vue.extend({
   computed: {
-    ...mapState({ fetching: (state: any) => state.fetching }),
+    ...mapState({
+      fetching: (state: any) => state.fetching,
+      songs: (state: any) => state.music.songs,
+    }),
   },
 })
 </script>

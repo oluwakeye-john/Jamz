@@ -1,10 +1,10 @@
 <template>
   <div class="mb-10">
-    <h1 class="mb-10 text-2xl font-bold">Made For You</h1>
+    <h1 class="mb-10 text-2xl font-bold">{{ title }}</h1>
     <div v-swiper="swiperOption">
       <div class="swiper-wrapper">
-        <div v-for="(_, index) in 6" :key="index" class="swiper-slide">
-          <card />
+        <div v-for="(item, index) in data" :key="index" class="swiper-slide">
+          <card :item="item" />
         </div>
       </div>
     </div>
@@ -13,6 +13,16 @@
 
 <script>
 export default {
+  props: {
+    data: {
+      type: Array,
+      default: () => [],
+    },
+    title: {
+      type: String,
+      default: () => '',
+    },
+  },
   data() {
     return {
       swiperOption: {

@@ -2,6 +2,18 @@
   <Nuxt />
 </template>
 
+<script>
+import { mapActions } from 'vuex'
+export default {
+  mounted() {
+    this.getInitial()
+  },
+  methods: {
+    ...mapActions({ getInitial: 'music/getInitial' }),
+  },
+}
+</script>
+
 <style>
 html {
   font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
@@ -25,6 +37,10 @@ body {
 *::after {
   box-sizing: border-box;
   margin: 0;
+}
+
+.rotateClass {
+  animation: rotate 1s ease-in-out infinite;
 }
 
 @keyframes rotate {

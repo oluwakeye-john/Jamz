@@ -22,7 +22,7 @@
 import { mapActions, mapState } from 'vuex'
 export default {
   computed: {
-    ...mapState({ isPlaying: (state) => state.isPlaying }),
+    ...mapState({ isPlaying: (state) => state.player.isPlaying }),
   },
   methods: {
     ...mapActions({ toggleSidebarAction: 'layout/toggleSidebarAction' }),

@@ -1,14 +1,12 @@
 export class Player {
-  private src: string
+  private src: string = ''
 
   private audio: HTMLAudioElement | null
   public isPlaying: boolean = false
 
   constructor() {
-    this.src =
-      'https://res.cloudinary.com/johnprops/video/upload/v1609926492/Major_Lazer_DJ_Maphorisa_feat._Nasty_C_Ice_Prince_Patoranking_Jidenna_-_Particula_qoe7vx.mp3'
     if (process.client) {
-      this.audio = new Audio(this.src)
+      this.audio = new Audio()
     } else {
       this.audio = null
     }
@@ -39,12 +37,15 @@ export class Player {
     }
   }
 
-  play(url?: string) {
+  play(url?: string, onDone?: any) {
     if (url) {
-      this.changeSrc(url)
-      this.audio = new Audio(this.src)
-      this.audio.load()
-      this.play()
+      if (this.audio) {
+        this.changeSrc(url)
+        this.audio.src = this.src
+        this.audio.load()
+        this.audio.addEventListener('canplay', onDone)
+        // this.play()
+      }
     } else {
       this.audio?.play()
       this.isPlaying = true
