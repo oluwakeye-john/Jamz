@@ -12,6 +12,13 @@ export class Player {
     }
   }
 
+  init(onPlay: any, onPause: any) {
+    if (this.audio) {
+      this.audio.addEventListener('play', onPlay)
+      this.audio.addEventListener('pause', onPause)
+    }
+  }
+
   private changeSrc(url: string) {
     this.src = url
   }
@@ -44,7 +51,6 @@ export class Player {
         this.audio.src = this.src
         this.audio.load()
         this.audio.addEventListener('canplay', onDone)
-        // this.play()
       }
     } else {
       this.audio?.play()

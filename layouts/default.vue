@@ -6,10 +6,14 @@
 import { mapActions } from 'vuex'
 export default {
   mounted() {
+    this.initPlayer()
     this.getInitial()
   },
   methods: {
-    ...mapActions({ getInitial: 'music/getInitial' }),
+    ...mapActions({
+      getInitial: 'music/getInitial',
+      initPlayer: 'player/initPlayer',
+    }),
   },
 }
 </script>

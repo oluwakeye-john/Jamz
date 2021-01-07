@@ -21,6 +21,18 @@ export const state = () => ({
 })
 
 export const actions = {
+  initPlayer({ commit }) {
+    function onPlay() {
+      console.log('playing')
+      commit(TOGGLE_PLAYING, true)
+    }
+    function onPause() {
+      console.log('pausing')
+      commit(TOGGLE_PLAYING, false)
+    }
+    player.init(onPlay, onPause)
+  },
+
   toggleFetching({ commit }, val) {
     commit(TOGGLE_FETCHING, val)
   },
