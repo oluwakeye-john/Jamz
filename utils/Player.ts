@@ -18,6 +18,27 @@ export class Player {
     this.src = url
   }
 
+  getCurrentInfo() {
+    return {
+      duration: this.audio?.duration,
+      currentTime: this.audio?.currentTime,
+    }
+  }
+
+  getDuration() {
+    return this.audio?.duration || 0
+  }
+
+  getCurrentTime() {
+    return this.audio?.currentTime || 0
+  }
+
+  seek(val: number) {
+    if (this.audio?.currentTime) {
+      this.audio.currentTime = val
+    }
+  }
+
   play(url?: string) {
     if (url) {
       this.changeSrc(url)
@@ -27,11 +48,6 @@ export class Player {
     } else {
       this.audio?.play()
       this.isPlaying = true
-
-      const duration = this.audio?.duration
-      const currentTime = this.audio?.currentTime
-      const volumn = this.audio?.volume
-      console.log({ duration, currentTime, volumn })
     }
   }
 
