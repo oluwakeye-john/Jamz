@@ -1,5 +1,11 @@
-import { GET_ALL_SONGS, TOGGLE_FAVORITE, TOGGLE_FETCHING } from './types'
+import {
+  FAVORITE_KEY,
+  GET_ALL_SONGS,
+  TOGGLE_FAVORITE,
+  TOGGLE_FETCHING,
+} from './types'
 import { GET_ALL_SONGS_CALL } from '~/services/types'
+import storage from '~/services/local-storage'
 
 export const state = () => ({ songs: [] })
 
@@ -11,8 +17,25 @@ export const actions = {
     commit(TOGGLE_FETCHING, false, { root: true })
   },
 
-  toggleFavorite({ commit }) {
-    commit(TOGGLE_FAVORITE)
+  toggleFavorite({ commit }, item) {
+    const favorites = storage.getArray(FAVORITE_KEY) || []
+    let isFav = false
+
+    const payload = favorites.filter((fav) => {
+      if (fav._id === item._id) {
+        isFav = true
+        return false
+      } else {
+        return true
+      }
+    })
+
+    if (!isFav) {
+      payload.push(item)
+    }
+
+    storage.set(FAVORITE_KEY, payload)
+    commit(TOGGLE_FAVORITE, payload)
   },
 }
 

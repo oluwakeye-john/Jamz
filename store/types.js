@@ -11,3 +11,7 @@ export const UP_BY_ONE_SECOND = 'UP_BY_ONE_SECOND'
 
 export const GET_ALL_SONGS = 'GET_ALL_SONGS'
 export const TOGGLE_FAVORITE = 'TOGGLE_FAVORITE'
+
+export const SET_ITEM = 'SET_ITEM'
+
+export const FAVORITE_KEY = 'favorites'

@@ -41,7 +41,7 @@
       </div>
     </div>
     <div class="right-nav">
-      <div class="icon active">
+      <div class="icon active" @click="toggleFavorite">
         <font-awesome-icon :icon="['fas', 'heart']" />
       </div>
       <div class="icon">
@@ -68,6 +68,7 @@ export default {
       isLoadingTrack: (state) => state.player.isLoadingTrack,
       currentTrack: (state) => state.player.currentTrack,
       currentTime: (state) => state.player.currentTrack.currentTime,
+      item: (state) => state.player.item,
       src: (state) => state.player.currentTrack.src,
     }),
     filteredDuration() {
@@ -91,7 +92,11 @@ export default {
       togglePlaying: 'player/togglePlaying',
       handleSeekAction: 'player/seekAction',
       checkTime: 'player/checkTime',
+      toggleFavoriteAction: 'music/toggleFavorite',
     }),
+    toggleFavorite() {
+      this.toggleFavoriteAction(this.item)
+    },
     handleSeek(val) {
       this.handleSeekAction(val)
     },

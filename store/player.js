@@ -7,6 +7,7 @@ import {
   SET_DURATION,
   SET_CURRENT_TRACK_INFO,
   TOGGLE_LOADING_TRACK,
+  SET_ITEM,
 } from './types'
 export const state = () => ({
   fetching: true,
@@ -18,16 +19,15 @@ export const state = () => ({
     duration: 0,
     currentTime: 0,
   },
+  item: {},
 })
 
 export const actions = {
   initPlayer({ commit }) {
     function onPlay() {
-      console.log('playing')
       commit(TOGGLE_PLAYING, true)
     }
     function onPause() {
-      console.log('pausing')
       commit(TOGGLE_PLAYING, false)
     }
     player.init(onPlay, onPause)
@@ -79,6 +79,7 @@ export const actions = {
 
     if (name && src) {
       commit(TOGGLE_LOADING_TRACK, true)
+      commit(SET_ITEM, data)
       player.play(src, onDone)
     }
   },
@@ -102,6 +103,9 @@ export const mutations = {
   },
   [TOGGLE_LOADING_TRACK](state, val) {
     state.isLoadingTrack = val
+  },
+  [SET_ITEM](state, data) {
+    state.item = data
   },
   [UP_BY_ONE_SECOND](state, val) {
     if (state.isPlaying) {
