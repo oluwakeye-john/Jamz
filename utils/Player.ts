@@ -12,10 +12,12 @@ export class Player {
     }
   }
 
-  init(onPlay: any, onPause: any) {
+  init(onPlay: any, onPause: any, onTimeUpdate: any) {
     if (this.audio) {
       this.audio.addEventListener('play', onPlay)
       this.audio.addEventListener('pause', onPause)
+      this.audio.addEventListener('ended', onPause)
+      this.audio.addEventListener('timeupdate', onTimeUpdate)
     }
   }
 

@@ -1,9 +1,21 @@
 <template>
   <base-layout>
-    <h1>Template</h1>
+    <!-- <slide-list title="Favorites" :data="favorites" /> -->
+    <table-list title="Favorites" :data="favorites" />
   </base-layout>
 </template>
 
 <script>
-export default {}
+import { mapActions, mapState } from 'vuex'
+export default {
+  computed: {
+    ...mapState({ favorites: (state) => state.music.favorites }),
+  },
+  mounted() {
+    this.getFavorites()
+  },
+  methods: {
+    ...mapActions({ getFavorites: 'music/getFavorites' }),
+  },
+}
 </script>

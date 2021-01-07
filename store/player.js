@@ -30,7 +30,11 @@ export const actions = {
     function onPause() {
       commit(TOGGLE_PLAYING, false)
     }
-    player.init(onPlay, onPause)
+    function onTimeUpdate() {
+      const prev = Math.floor(player.getCurrentTime() || 0)
+      commit(UP_BY_ONE_SECOND, prev)
+    }
+    player.init(onPlay, onPause, onTimeUpdate)
   },
 
   toggleFetching({ commit }, val) {

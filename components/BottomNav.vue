@@ -23,7 +23,7 @@
     </div>
     <div class="center-nav">
       <div class="track-info">
-        <p class="track-info__name">{{ currentTrack.name }}</p>
+        <p class="track-info__name">{{ currentTrack.name }} ·</p>
       </div>
       <div class="progress-container">
         <span class="progress-label">{{ filteredCurrentTime }}</span>
@@ -82,10 +82,10 @@ export default {
     },
   },
   beforeDestroy() {
-    this.disableTimeWatch()
+    // this.disableTimeWatch()
   },
   mounted() {
-    this.enableTimeWatch()
+    // this.enableTimeWatch()
   },
   methods: {
     ...mapActions({
@@ -140,6 +140,20 @@ export default {
 
 .controls {
   text-align: center;
+
+  button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    transition: 0.3s;
+    margin: 0 0.5rem;
+
+    &:not([disabled]):hover {
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+  }
 }
 
 .center-nav {

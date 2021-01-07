@@ -1,13 +1,13 @@
 import {
   FAVORITE_KEY,
   GET_ALL_SONGS,
-  TOGGLE_FAVORITE,
   TOGGLE_FETCHING,
+  GET_FAVORITES,
 } from './types'
 import { GET_ALL_SONGS_CALL } from '~/services/types'
 import storage from '~/services/local-storage'
 
-export const state = () => ({ songs: [] })
+export const state = () => ({ songs: [], favorites: [] })
 
 export const actions = {
   async getInitial({ commit }) {
@@ -15,6 +15,11 @@ export const actions = {
     const response = await this.$axios.$get(GET_ALL_SONGS_CALL)
     commit(GET_ALL_SONGS, response)
     commit(TOGGLE_FETCHING, false, { root: true })
+  },
+
+  getFavorites({ commit }) {
+    const favorites = storage.getArray(FAVORITE_KEY) || []
+    commit(GET_FAVORITES, favorites)
   },
 
   toggleFavorite({ commit }, item) {
@@ -35,7 +40,7 @@ export const actions = {
     }
 
     storage.set(FAVORITE_KEY, payload)
-    commit(TOGGLE_FAVORITE, payload)
+    commit(GET_FAVORITES, payload)
   },
 }
 
@@ -44,7 +49,7 @@ export const mutations = {
     state.songs = data
   },
 
-  [TOGGLE_FAVORITE]() {
-    //
+  [GET_FAVORITES](state, data) {
+    state.favorites = data
   },
 }
