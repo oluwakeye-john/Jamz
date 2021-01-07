@@ -1,6 +1,6 @@
 <template>
   <div class="bottom-container border-border">
-    <div>
+    <div class="controls">
       <button :disabled="!src" class="icon">
         <font-awesome-icon :icon="['fas', 'backward']" />
       </button>
@@ -38,7 +38,7 @@
         <span class="progress-label">{{ filteredDuration }}</span>
       </div>
     </div>
-    <div>
+    <div class="right-nav">
       <h1>Queue</h1>
     </div>
   </div>
@@ -121,7 +121,12 @@ export default {
   @media (max-width: 768px) {
     flex-direction: column;
     justify-content: center;
+    padding: 1.5rem 1.5rem;
   }
+}
+
+.controls {
+  text-align: center;
 }
 
 .center-nav {
@@ -129,6 +134,18 @@ export default {
   flex-direction: column;
   align-items: center;
   width: 45%;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    display: none;
+  }
+}
+
+.right-nav {
+  @media (max-width: 768px) {
+    width: 100%;
+    display: none;
+  }
 }
 
 .progress-container {
@@ -137,7 +154,7 @@ export default {
   width: 100%;
 
   @media (max-width: 768px) {
-    display: none;
+    /* display: none; */
   }
 
   .progress {
