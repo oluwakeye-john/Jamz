@@ -20,7 +20,7 @@
         :key="index"
         class="my-8 sidebar__item"
       >
-        <nuxt-link :to="item.path" active-class="text-primary">
+        <nuxt-link exact :to="item.path" active-class="text-primary">
           <font-awesome-icon :icon="['fas', item.icon]" />
           <span class="ml-2">
             {{ item.name }}

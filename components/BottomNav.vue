@@ -1,7 +1,7 @@
 <template>
   <div class="bottom-container border-border">
     <div class="controls">
-      <button :disabled="!src" class="icon">
+      <button disabled class="icon">
         <font-awesome-icon :icon="['fas', 'backward']" />
       </button>
       <button
@@ -17,12 +17,14 @@
         <font-awesome-icon v-else-if="!isPlaying" :icon="['fas', 'play']" />
         <font-awesome-icon v-else :icon="['fas', 'pause']" />
       </button>
-      <button :disabled="!src" class="icon">
+      <button disabled class="icon">
         <font-awesome-icon :icon="['fas', 'forward']" />
       </button>
     </div>
     <div class="center-nav">
-      <p>{{ currentTrack.name }}</p>
+      <div class="track-info">
+        <p class="track-info__name">{{ currentTrack.name }}</p>
+      </div>
       <div class="progress-container">
         <span class="progress-label">{{ filteredCurrentTime }}</span>
         <vue-slider
@@ -39,7 +41,12 @@
       </div>
     </div>
     <div class="right-nav">
-      <h1>Queue</h1>
+      <div class="icon active">
+        <font-awesome-icon :icon="['fas', 'heart']" />
+      </div>
+      <div class="icon">
+        <font-awesome-icon :icon="['fas', 'plus']" />
+      </div>
     </div>
   </div>
 </template>
@@ -117,6 +124,7 @@ export default {
 
   display: flex;
   justify-content: space-between;
+  align-items: center;
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -139,12 +147,32 @@ export default {
     width: 100%;
     display: none;
   }
+
+  .track-info {
+    padding: 0 50px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &__name {
+      justify-content: center;
+    }
+  }
 }
 
 .right-nav {
+  display: flex;
   @media (max-width: 768px) {
     width: 100%;
     display: none;
+  }
+
+  .icon {
+    cursor: pointer;
+  }
+  .active {
+    @apply text-primary;
   }
 }
 
@@ -172,7 +200,7 @@ export default {
 
 .icon {
   margin: 0 1rem;
-  opacity: 0.6;
+  opacity: 1;
 
   &:focus {
     outline: none;
@@ -184,7 +212,6 @@ export default {
   }
 
   &--play {
-    opacity: 1;
     font-size: 24px;
   }
 }
