@@ -40,6 +40,7 @@ export default {
         { name: 'Music', path: '/', icon: 'music' },
         { name: 'Browse', path: '/browse', icon: 'search' },
         { name: 'Favorites', path: '/favorite', icon: 'heart' },
+        { name: 'Recent', path: '/recent', icon: 'clock' },
       ],
     }
   },

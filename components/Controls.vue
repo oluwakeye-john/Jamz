@@ -67,6 +67,11 @@ export default {
       background-color: rgba(255, 255, 255, 0.3);
     } */
 
+    &:disabled {
+      opacity: 0.6;
+      cursor: default;
+    }
+
     &:focus {
       outline: 0;
     }

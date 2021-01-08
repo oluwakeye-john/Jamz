@@ -4,11 +4,11 @@
     <table>
       <tr>
         <th class="sn">#</th>
-        <th></th>
-        <th>Artist</th>
-        <th>Artist</th>
-        <th>Album</th>
-        <th>L</th>
+        <th class="fav"></th>
+        <th class="name">Name</th>
+        <th class="artist">Artist</th>
+        <th class="album">Album</th>
+        <th class="l">L</th>
       </tr>
       <tr v-for="(item, index) in data" :key="item.id">
         <td class="sn">{{ index + 1 }}</td>
@@ -70,10 +70,51 @@ table {
     cursor: pointer;
   }
 
+  @media (max-width: 768px) {
+    td {
+      min-width: 30px;
+    }
+  }
+
   th {
-    padding: 1rem 0;
     color: #72727d;
     text-transform: uppercase;
+
+    &.sn {
+      width: 5%;
+    }
+
+    &.fav {
+      width: 5%;
+    }
+
+    &.name {
+      width: 30%;
+    }
+    &.artist,
+    &.album,
+    &.l {
+      width: 20%;
+    }
+
+    @media (max-width: 768px) {
+      &.fav {
+        min-width: 50px;
+      }
+      &.name {
+        min-width: 150px;
+      }
+      &.artist,
+      &.album,
+      &.l {
+        min-width: 100px;
+      }
+    }
+  }
+
+  td,
+  th {
+    padding: 1rem 0;
   }
 
   .sn {
@@ -83,10 +124,6 @@ table {
   .fav-icon {
     @apply text-primary;
     cursor: pointer;
-  }
-
-  td {
-    padding: 1rem 0;
   }
 
   tr {

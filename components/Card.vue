@@ -6,7 +6,8 @@
         <font-awesome-icon :icon="['fas', 'play']" />
       </div>
     </div>
-    <p class="text-sm my-2">{{ item.name }}</p>
+    <p class="text-md font-bold mt-3 mb-1">{{ item.name }}</p>
+    <p class="text-sm my-1 misc">{{ item.name }}</p>
   </div>
 </template>
 
@@ -77,6 +78,10 @@ export default {
       object-fit: cover;
       border-radius: 4px;
     }
+  }
+
+  .misc {
+    color: #72727d;
   }
 }
 </style>

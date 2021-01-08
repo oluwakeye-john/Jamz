@@ -53,3 +53,14 @@ export const mutations = {
     state.favorites = data
   },
 }
+
+export const getters = {
+  isFavorite: (state) => (item) => {
+    const resp = state.favorites.find((x) => x._id === item._id)
+    if (resp && resp._id) {
+      return true
+    } else {
+      return false
+    }
+  },
+}

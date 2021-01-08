@@ -46,12 +46,8 @@ export default {
     '@nuxtjs/pwa',
   ],
 
-  env: {
-    baseURL: process.env.NUXT_ENV_BASE_URL,
-  },
-
   axios: {
-    baseURL: process.env.baseURL, // Used as fallback if no runtime config is provided
+    baseURL: process.env.BASE_URL,
   },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)

@@ -17,7 +17,10 @@
     <div class="right-nav desktop">
       <div class="right-nav__desktop">
         <button :disabled="!src" class="icon" @click="toggleFavorite">
-          <font-awesome-icon :icon="['fas', 'heart']" />
+          <font-awesome-icon
+            :class="{ active: isFavorite(item) }"
+            :icon="['fas', 'heart']"
+          />
         </button>
         <button :disabled="!src" class="icon">
           <font-awesome-icon :icon="['fas', 'plus']" />
@@ -34,7 +37,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapActions, mapGetters } from 'vuex'
 
 export default {
   data() {
@@ -48,7 +51,11 @@ export default {
       currentTrack: (state) => state.player.currentTrack,
       item: (state) => state.player.item,
       src: (state) => state.player.currentTrack.src,
+      favorites: (state) => state.music.favorites,
     }),
+
+    ...mapGetters({ isFavorite: 'music/isFavorite' }),
+
     isReadyToPlay() {
       return this.src && this.src.length
     },
@@ -155,9 +162,6 @@ export default {
 
   .icon {
     cursor: pointer;
-  }
-  .active {
-    @apply text-primary;
   }
 }
 

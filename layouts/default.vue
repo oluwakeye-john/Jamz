@@ -91,4 +91,8 @@ body {
     transform: translate(1px, -2px) rotate(-1deg);
   }
 }
+.active {
+  @apply text-primary;
+  transition: color 0.3s;
+}
 </style>

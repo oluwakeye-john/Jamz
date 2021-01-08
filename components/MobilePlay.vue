@@ -11,10 +11,19 @@
     <div style="width: 80%" class="my-4">
       <slider :expanded="true" />
     </div>
+
+    <div>
+      <font-awesome-icon
+        :class="{ active: isFavorite(data) }"
+        :icon="['fas', 'heart']"
+        @click="toggleFavorite"
+      />
+    </div>
   </div>
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
 export default {
   props: {
     data: {
@@ -22,9 +31,18 @@ export default {
       default: () => ({}),
     },
   },
+  computed: {
+    ...mapGetters({ isFavorite: 'music/isFavorite' }),
+  },
   methods: {
+    ...mapActions({
+      toggleFavoriteAction: 'music/toggleFavorite',
+    }),
     handleClose() {
       this.$emit('close')
+    },
+    toggleFavorite() {
+      this.toggleFavoriteAction(this.data)
     },
   },
 }
