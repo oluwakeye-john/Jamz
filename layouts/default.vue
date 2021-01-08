@@ -94,5 +94,6 @@ body {
 .active {
   @apply text-primary;
   transition: color 0.3s;
+  transition-delay: 0.5s;
 }
 </style>

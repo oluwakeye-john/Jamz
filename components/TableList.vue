@@ -29,6 +29,8 @@
         <td>02/01/2021</td>
       </tr>
     </table>
+
+    <p class="empty my-10">No item</p>
   </div>
 </template>
 
@@ -61,6 +63,10 @@ export default {
 .table-container {
   overflow-x: auto;
   font-size: 14px;
+}
+.empty {
+  color: #72727d;
+  text-align: center;
 }
 table {
   width: 100%;

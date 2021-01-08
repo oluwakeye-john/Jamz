@@ -66,7 +66,7 @@ export const actions = {
     commit(SET_DURATION, dur)
   },
 
-  setTrack({ commit }, data) {
+  setTrack({ commit, dispatch }, data) {
     const name = data?.name
     const src = data?.fileUrl
 
@@ -99,6 +99,7 @@ export const actions = {
         commit(SET_DURATION, dur)
         player.play()
         commit(TOGGLE_LOADING_TRACK, false)
+        dispatch(`music/addToRecent`, data, { root: true })
       }, 500)
     }
 

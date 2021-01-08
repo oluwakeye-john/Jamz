@@ -3,11 +3,13 @@ import {
   GET_ALL_SONGS,
   TOGGLE_FETCHING,
   GET_FAVORITES,
+  RECENT_KEY,
+  GET_RECENT,
 } from './types'
 import { GET_ALL_SONGS_CALL } from '~/services/types'
 import storage from '~/services/local-storage'
 
-export const state = () => ({ songs: [], favorites: [] })
+export const state = () => ({ songs: [], favorites: [], recent: [] })
 
 export const actions = {
   async getInitial({ commit }) {
@@ -20,6 +22,28 @@ export const actions = {
   getFavorites({ commit }) {
     const favorites = storage.getArray(FAVORITE_KEY) || []
     commit(GET_FAVORITES, favorites)
+  },
+
+  getRecent({ commit }) {
+    const recent = storage.getArray(RECENT_KEY) || []
+    commit(GET_RECENT, recent)
+  },
+
+  addToRecent({ commit }, item) {
+    const recent = storage.getArray(RECENT_KEY) || []
+
+    const resp = recent.filter((rec) => {
+      if (rec._id === item._id) {
+        return false
+      } else {
+        return true
+      }
+    })
+
+    const payload = [item, ...resp].slice(0, 10)
+
+    storage.set(RECENT_KEY, payload)
+    commit(GET_RECENT, payload)
   },
 
   toggleFavorite({ commit }, item) {
@@ -51,6 +75,10 @@ export const mutations = {
 
   [GET_FAVORITES](state, data) {
     state.favorites = data
+  },
+
+  [GET_RECENT](state, data) {
+    state.recent = data
   },
 }
 

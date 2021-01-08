@@ -8,10 +8,7 @@
       />
     </div>
 
-    <div class="input-container">
-      <font-awesome-icon class="icon" :icon="['fas', 'search']" />
-      <input placeholder="Search..." />
-    </div>
+    <search-bar />
     <div class="avatar">
       <font-awesome-icon class="icon" :icon="['fas', 'user-circle']" />
     </div>
@@ -44,6 +41,11 @@ export default {
   width: 100%;
   padding: 1rem 1.5rem;
   font-size: 20px;
+  z-index: 3;
+
+  @media (max-width: 768px) {
+    z-index: unset;
+  }
 
   display: flex;
   align-items: center;
@@ -61,22 +63,6 @@ export default {
       margin-right: 2rem;
 
       display: inline-block;
-    }
-  }
-
-  .input-container {
-    font-size: 15px;
-    .icon {
-      margin-right: 1rem;
-      @media (max-width: 768px) {
-        display: none;
-      }
-    }
-    input {
-      background-color: transparent;
-      &:focus {
-        outline: none;
-      }
     }
   }
 

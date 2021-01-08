@@ -19,6 +19,7 @@
         v-for="(item, index) in sidebarItems"
         :key="index"
         class="my-8 sidebar__item"
+        @click="closeSidebar"
       >
         <nuxt-link exact :to="item.path" active-class="text-primary">
           <font-awesome-icon :icon="['fas', item.icon]" />
@@ -41,6 +42,7 @@ export default {
         { name: 'Browse', path: '/browse', icon: 'search' },
         { name: 'Favorites', path: '/favorite', icon: 'heart' },
         { name: 'Recent', path: '/recent', icon: 'clock' },
+        { name: 'About', path: '/about', icon: 'clock' },
       ],
     }
   },
