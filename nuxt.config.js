@@ -51,7 +51,7 @@ export default {
   },
 
   axios: {
-    baseURL: 'http://192.168.0.101:5001', // Used as fallback if no runtime config is provided
+    baseURL: process.env.baseURL, // Used as fallback if no runtime config is provided
   },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
