@@ -1,116 +1,80 @@
 <template>
-  <div class="bottom-container border-border">
-    <div class="controls">
-      <button disabled class="icon">
-        <font-awesome-icon :icon="['fas', 'backward']" />
-      </button>
-      <button
-        :disabled="!src || isLoadingTrack"
-        class="icon icon--play"
-        @click="togglePlaying"
-      >
-        <font-awesome-icon
-          v-if="isLoadingTrack"
-          class="rotateClass"
-          :icon="['fas', 'redo']"
-        />
-        <font-awesome-icon v-else-if="!isPlaying" :icon="['fas', 'play']" />
-        <font-awesome-icon v-else :icon="['fas', 'pause']" />
-      </button>
-      <button disabled class="icon">
-        <font-awesome-icon :icon="['fas', 'forward']" />
-      </button>
-    </div>
-    <div class="center-nav">
-      <div class="track-info">
-        <p class="track-info__name">{{ currentTrack.name }} ·</p>
+  <div
+    :class="{
+      'expand-bottom-nav': isMobileOpen,
+      'disable-nav': !isReadyToPlay,
+    }"
+    class="bottom-container border-border"
+  >
+    <controls />
+    <div class="center-nav desktop">
+      <div class="track-info" @click="toggleMobileOpen">
+        <p class="track-info__name">{{ currentTrack.name }}·</p>
       </div>
-      <div class="progress-container">
-        <span class="progress-label">{{ filteredCurrentTime }}</span>
-        <vue-slider
-          v-model="currentTrack.currentTime"
-          class="progress"
-          :min="0"
-          :max="flooredDuration"
-          :disabled="!src"
-          tooltip="none"
-          rail-style="background:#92929D"
-          @change="handleSeek"
-        ></vue-slider>
-        <span class="progress-label">{{ filteredDuration }}</span>
+      <slider />
+    </div>
+
+    <div class="right-nav desktop">
+      <div class="right-nav__desktop">
+        <button :disabled="!src" class="icon" @click="toggleFavorite">
+          <font-awesome-icon :icon="['fas', 'heart']" />
+        </button>
+        <button :disabled="!src" class="icon">
+          <font-awesome-icon :icon="['fas', 'plus']" />
+        </button>
+      </div>
+      <div class="right-nav__mobile">
+        <button :disabled="!src" class="icon" @click="toggleMobileOpen">
+          <font-awesome-icon :icon="['fas', 'chevron-up']" />
+        </button>
       </div>
     </div>
-    <div class="right-nav">
-      <div class="icon active" @click="toggleFavorite">
-        <font-awesome-icon :icon="['fas', 'heart']" />
-      </div>
-      <div class="icon">
-        <font-awesome-icon :icon="['fas', 'plus']" />
-      </div>
-    </div>
+    <mobile-play v-show="isMobileOpen" :data="item" @close="closeMobilePlay" />
   </div>
 </template>
 
 <script>
 import { mapState, mapActions } from 'vuex'
-import { convertSecondsToTime } from '../utils/filterTime'
 
 export default {
   data() {
     return {
-      timer: null,
-      cT: 20,
+      isMobileOpen: false,
     }
   },
   computed: {
     ...mapState({
       isPlaying: (state) => state.player.isPlaying,
-      isLoadingTrack: (state) => state.player.isLoadingTrack,
       currentTrack: (state) => state.player.currentTrack,
-      currentTime: (state) => state.player.currentTrack.currentTime,
       item: (state) => state.player.item,
       src: (state) => state.player.currentTrack.src,
     }),
-    filteredDuration() {
-      return convertSecondsToTime(this.currentTrack.duration)
-    },
-    filteredCurrentTime() {
-      return convertSecondsToTime(this.currentTime)
-    },
-    flooredDuration() {
-      return Math.floor(this.currentTrack.duration)
+    isReadyToPlay() {
+      return this.src && this.src.length
     },
   },
-  beforeDestroy() {
-    // this.disableTimeWatch()
+  watch: {
+    isMobileOpen(newVal) {
+      if (newVal) {
+        window.document.documentElement.style.overflowY = 'hidden'
+      } else {
+        window.document.documentElement.style.overflowY = 'auto'
+      }
+    },
   },
-  mounted() {
-    // this.enableTimeWatch()
-  },
+
   methods: {
     ...mapActions({
-      togglePlaying: 'player/togglePlaying',
-      handleSeekAction: 'player/seekAction',
-      checkTime: 'player/checkTime',
       toggleFavoriteAction: 'music/toggleFavorite',
     }),
     toggleFavorite() {
       this.toggleFavoriteAction(this.item)
     },
-    handleSeek(val) {
-      this.handleSeekAction(val)
+    toggleMobileOpen() {
+      this.isMobileOpen = !this.isMobileOpen
     },
-    enableTimeWatch() {
-      if (process.client) {
-        this.timer = setInterval(() => {
-          this.checkTime()
-        }, 1000)
-      }
-    },
-    disableTimeWatch() {
-      if (process.client) {
-        clearInterval(this.timer)
-      }
+    closeMobilePlay() {
+      this.isMobileOpen = false
     },
   },
 }
@@ -130,29 +94,13 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transition: 0.3s;
 
+  max-height: 20vh;
   @media (max-width: 768px) {
-    flex-direction: column;
-    justify-content: center;
-    padding: 1.5rem 1.5rem;
-  }
-}
-
-.controls {
-  text-align: center;
-
-  button {
-    display: inline-flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    padding: 10px;
-    transition: 0.3s;
-    margin: 0 0.5rem;
-
-    &:not([disabled]):hover {
-      border-radius: 50%;
-      background-color: rgba(255, 255, 255, 0.3);
-    }
+    padding: 1rem 1.5rem;
   }
 }
 
@@ -163,8 +111,9 @@ export default {
   width: 45%;
 
   @media (max-width: 768px) {
-    width: 100%;
-    display: none;
+    flex-direction: column;
+    width: unset;
+    align-items: flex-start;
   }
 
   .track-info {
@@ -174,6 +123,12 @@ export default {
     align-items: center;
     justify-content: center;
 
+    @media (max-width: 768px) {
+      width: unset;
+      padding: 0;
+      justify-content: flex-start;
+    }
+
     &__name {
       justify-content: center;
     }
@@ -182,9 +137,20 @@ export default {
 
 .right-nav {
   display: flex;
-  @media (max-width: 768px) {
-    width: 100%;
+  &__mobile {
     display: none;
+  }
+  @media (max-width: 768px) {
+    display: block;
+    text-align: left;
+
+    &__desktop {
+      display: none;
+    }
+    &__mobile {
+      text-align: right;
+      display: block;
+    }
   }
 
   .icon {
@@ -192,28 +158,6 @@ export default {
   }
   .active {
     @apply text-primary;
-  }
-}
-
-.progress-container {
-  display: flex;
-  align-items: center;
-  width: 100%;
-
-  @media (max-width: 768px) {
-    /* display: none; */
-  }
-
-  .progress {
-    flex: 1;
-  }
-
-  .progress-label {
-    font-size: 14px;
-    width: 50px;
-    display: inline-block;
-    text-align: center;
-    margin: 0 auto;
   }
 }
 
@@ -232,6 +176,25 @@ export default {
 
   &--play {
     font-size: 24px;
+  }
+}
+
+.disable-nav {
+  @media (max-width: 768px) {
+    display: none;
+  }
+}
+
+.expand-bottom-nav {
+  @media (max-width: 768px) {
+    height: 100vh;
+    max-height: 100vh;
+  }
+
+  & > .desktop {
+    @media (max-width: 768px) {
+      display: none;
+    }
   }
 }
 </style>

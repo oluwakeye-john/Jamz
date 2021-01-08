@@ -15,7 +15,7 @@ export const state = () => ({
   isLoadingTrack: false,
   currentTrack: {
     src: '',
-    name: '-',
+    name: '',
     duration: 0,
     currentTime: 0,
   },
@@ -70,9 +70,30 @@ export const actions = {
     const name = data?.name
     const src = data?.fileUrl
 
+    function setMeta() {
+      if ('mediaSession' in navigator) {
+        // eslint-disable-next-line no-undef
+        window.navigator.mediaSession.metadata = new MediaMetadata({
+          title: name,
+          artist: 'Drax Lay',
+          album: "Let's yoga",
+          artwork: [
+            {
+              src: data?.imageUrl,
+              // sizes: '128x128',
+              type: 'image/png',
+            },
+          ],
+        })
+      }
+    }
+
+    if (process.client) {
+      setMeta()
+    }
+
     function onDone() {
       setTimeout(() => {
-        commit(SET_CURRENT_TRACK_INFO, { name, src })
         commit(TOGGLE_PLAYING, true)
         const dur = player.getDuration()
         commit(SET_DURATION, dur)
@@ -83,6 +104,7 @@ export const actions = {
 
     if (name && src) {
       commit(TOGGLE_LOADING_TRACK, true)
+      commit(SET_CURRENT_TRACK_INFO, { name, src })
       commit(SET_ITEM, data)
       player.play(src, onDone)
     }
