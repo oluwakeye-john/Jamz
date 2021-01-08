@@ -9,7 +9,7 @@
     <controls />
     <div class="center-nav desktop">
       <div class="track-info" @click="toggleMobileOpen">
-        <p class="track-info__name">{{ currentTrack.name }}·</p>
+        <p class="track-info__name">{{ currentTrack.name }}</p>
       </div>
       <slider />
     </div>
