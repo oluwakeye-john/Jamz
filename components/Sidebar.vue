@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar-container">
+  <div class="sidebar-container" :class="{ 'sidebar-container-open': sidebar }">
     <div :class="{ 'sidebar-open': sidebar }" class="sidebar border-border">
       <button class="close-button" @click="closeSidebar">
         <font-awesome-icon :icon="['fas', 'times']" />

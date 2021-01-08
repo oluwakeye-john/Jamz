@@ -2,14 +2,14 @@
   <div>
     <h1 class="mt-0 mb-5 text-2xl font-bold">{{ title }}</h1>
     <div class="table-container">
-      <table>
+      <table v-if="data.length">
         <tr>
           <th class="sn">#</th>
           <th class="fav"></th>
           <th class="name">Name</th>
           <th class="artist">Artist</th>
           <th class="album">Album</th>
-          <th class="l">L</th>
+          <th class="l">Release</th>
         </tr>
         <tr v-for="(item, index) in data" :key="item.id">
           <td class="sn">{{ index + 1 }}</td>
@@ -27,11 +27,11 @@
           </td>
           <td>-</td>
           <td>-</td>
-          <td>02/01/2021</td>
+          <td>{{ formattedCreatedAt(item) }}</td>
         </tr>
       </table>
 
-      <p class="empty my-10">No item</p>
+      <p v-else class="empty my-10">No item</p>
     </div>
   </div>
 </template>
@@ -49,11 +49,16 @@ export default {
       default: () => [],
     },
   },
+
   methods: {
     ...mapActions({
       toggleFavorite: 'music/toggleFavorite',
       setTrack: 'player/setTrack',
     }),
+    formattedCreatedAt(item) {
+      const t = new Date(item.createdAt)
+      return t.toLocaleDateString()
+    },
     playTrack(item) {
       this.setTrack(item)
     },
@@ -76,6 +81,9 @@ table {
 
   .name {
     cursor: pointer;
+  }
+  td {
+    font-size: 14px;
   }
 
   @media (max-width: 768px) {

@@ -4,7 +4,7 @@
     <div v-swiper="swiperOption">
       <div class="swiper-wrapper">
         <div v-for="(item, index) in data" :key="index" class="swiper-slide">
-          <card :item="item" />
+          <card :item="item" :circular="circular" />
         </div>
       </div>
     </div>
@@ -21,6 +21,10 @@ export default {
     title: {
       type: String,
       default: () => '',
+    },
+    circular: {
+      type: Boolean,
+      default: false,
     },
   },
   data() {

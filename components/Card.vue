@@ -1,13 +1,15 @@
 <template>
   <div class="card">
     <div class="card__image-container">
-      <img :src="item.imageUrl" />
+      <img :src="item.imageUrl" :class="{ circular: circular }" />
       <div @click="playTrack">
         <font-awesome-icon :icon="['fas', 'play']" />
       </div>
     </div>
-    <p class="text-md font-bold mt-3 mb-1">{{ item.name }}</p>
-    <p class="text-sm my-1 misc">{{ item.name }}</p>
+    <div :class="{ 'text-center': circular }">
+      <p class="text-md font-bold mt-3 mb-1">{{ item.name }}</p>
+      <p class="text-sm my-1 misc">{{ item.name }}</p>
+    </div>
   </div>
 </template>
 
@@ -18,6 +20,10 @@ export default {
     item: {
       type: Object,
       default: () => ({}),
+    },
+    circular: {
+      type: Boolean,
+      default: false,
     },
   },
   methods: {
@@ -40,7 +46,7 @@ export default {
     align-items: center;
 
     @media (max-width: 768px) {
-      height: 170px;
+      height: 150px;
     }
 
     &:hover {
@@ -77,6 +83,10 @@ export default {
       height: 100%;
       object-fit: cover;
       border-radius: 4px;
+
+      &.circular {
+        border-radius: 50%;
+      }
     }
   }
 

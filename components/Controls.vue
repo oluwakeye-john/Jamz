@@ -11,7 +11,7 @@
       <font-awesome-icon
         v-if="isLoadingTrack"
         class="rotateClass"
-        :icon="['fas', 'redo']"
+        :icon="['fas', 'circle-notch']"
       />
       <font-awesome-icon v-else-if="!isPlaying" :icon="['fas', 'play']" />
       <font-awesome-icon v-else :icon="['fas', 'pause']" />

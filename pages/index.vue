@@ -3,6 +3,8 @@
     <div v-if="!fetching">
       <slide-list title="Made for you" :data="songs" />
       <slide-list title="Popular playlists" :data="songs" />
+      <slide-list title="Your Fav Artists" :data="songs" :circular="true" />
+      <slide-list title="Your Fav Artists" :data="songs" />
     </div>
     <page-spinner v-else />
   </base-layout>

@@ -12,13 +12,13 @@
       <slider :expanded="true" />
     </div>
 
-    <div>
+    <!-- <div>
       <font-awesome-icon
         :class="{ active: isFavorite(data) }"
         :icon="['fas', 'heart']"
         @click="toggleFavorite"
       />
-    </div>
+    </div> -->
   </div>
 </template>
 
