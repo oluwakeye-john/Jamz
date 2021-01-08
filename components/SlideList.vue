@@ -30,6 +30,9 @@ export default {
         spaceBetween: 30,
         breakpoints: {
           768: {
+            slidesPerView: 2.5,
+          },
+          992: {
             slidesPerView: 4,
           },
         },

@@ -41,7 +41,7 @@ export default {}
       outline: none;
     }
     &:focus + .suggestion-container {
-      display: block;
+      /* display: block; */
     }
   }
 
@@ -58,7 +58,7 @@ export default {}
     &:hover,
     &:focus,
     &:focus-within {
-      display: block;
+      /* display: block; */
     }
   }
 

@@ -1,36 +1,38 @@
 <template>
-  <div class="table-container">
+  <div>
     <h1 class="mt-0 mb-5 text-2xl font-bold">{{ title }}</h1>
-    <table>
-      <tr>
-        <th class="sn">#</th>
-        <th class="fav"></th>
-        <th class="name">Name</th>
-        <th class="artist">Artist</th>
-        <th class="album">Album</th>
-        <th class="l">L</th>
-      </tr>
-      <tr v-for="(item, index) in data" :key="item.id">
-        <td class="sn">{{ index + 1 }}</td>
-        <td>
-          <font-awesome-icon
-            class="fav-icon"
-            :icon="['fas', 'heart']"
-            @click="toggleFavorite(item)"
-          />
-        </td>
-        <td>
-          <span class="name" @click="playTrack(item)">
-            {{ item.name }}
-          </span>
-        </td>
-        <td>-</td>
-        <td>-</td>
-        <td>02/01/2021</td>
-      </tr>
-    </table>
+    <div class="table-container">
+      <table>
+        <tr>
+          <th class="sn">#</th>
+          <th class="fav"></th>
+          <th class="name">Name</th>
+          <th class="artist">Artist</th>
+          <th class="album">Album</th>
+          <th class="l">L</th>
+        </tr>
+        <tr v-for="(item, index) in data" :key="item.id">
+          <td class="sn">{{ index + 1 }}</td>
+          <td>
+            <font-awesome-icon
+              class="fav-icon"
+              :icon="['fas', 'heart']"
+              @click="toggleFavorite(item)"
+            />
+          </td>
+          <td>
+            <span class="name" @click="playTrack(item)">
+              {{ item.name }}
+            </span>
+          </td>
+          <td>-</td>
+          <td>-</td>
+          <td>02/01/2021</td>
+        </tr>
+      </table>
 
-    <p class="empty my-10">No item</p>
+      <p class="empty my-10">No item</p>
+    </div>
   </div>
 </template>
 

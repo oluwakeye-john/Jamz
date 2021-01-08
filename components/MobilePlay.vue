@@ -59,6 +59,8 @@ export default {
   align-items: center;
   position: relative;
 
+  z-index: 5;
+
   @media (max-width: 768px) {
     display: flex;
   }

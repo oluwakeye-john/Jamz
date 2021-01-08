@@ -41,10 +41,10 @@ export default {
   width: 100%;
   padding: 1rem 1.5rem;
   font-size: 20px;
-  z-index: 3;
+  /* z-index: 3; */
 
   @media (max-width: 768px) {
-    z-index: unset;
+    /* z-index: unset; */
   }
 
   display: flex;
