@@ -1,5 +1,5 @@
 <template>
-  <div class="input-container">
+  <div class="input-container text-lightText">
     <font-awesome-icon class="icon" :icon="['fas', 'search']" />
     <input placeholder="Search..." />
     <div class="suggestion-container">
@@ -19,7 +19,6 @@ export default {}
   font-size: 15px;
   position: relative;
   width: 60%;
-  color: #fff;
   font-size: 14px;
 
   z-index: 4;
@@ -42,6 +41,10 @@ export default {}
     }
     &:focus + .suggestion-container {
       /* display: block; */
+    }
+
+    &::placeholder {
+      /* color: #fff; */
     }
   }
 
