@@ -19,5 +19,8 @@ export default Vue.extend({
       songs: (state: any) => state.music.songs,
     }),
   },
+  head: {
+    title: "Let's Jam | Jamz",
+  },
 })
 </script>

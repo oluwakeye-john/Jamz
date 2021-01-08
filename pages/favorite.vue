@@ -17,5 +17,8 @@ export default {
   methods: {
     ...mapActions({ getFavorites: 'music/getFavorites' }),
   },
+  head: {
+    title: 'Favorites | Jamz',
+  },
 }
 </script>

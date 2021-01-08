@@ -17,5 +17,8 @@ export default {
   methods: {
     ...mapActions({ getRecent: 'music/getRecent' }),
   },
+  head: {
+    title: 'Recent | Jamz',
+  },
 }
 </script>
