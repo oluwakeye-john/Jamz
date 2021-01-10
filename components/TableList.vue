@@ -1,37 +1,29 @@
 <template>
   <div>
     <h1 class="mt-0 mb-5 text-2xl font-bold">{{ title }}</h1>
-    <div class="table-container">
-      <table v-if="data.length">
-        <tr>
-          <th class="sn">#</th>
-          <th class="fav"></th>
-          <th class="name">Name</th>
-          <th class="artist">Artist</th>
-          <th class="album">Album</th>
-          <th class="l">Release</th>
-        </tr>
-        <tr v-for="(item, index) in data" :key="item.id">
-          <td class="sn">{{ index + 1 }}</td>
-          <td>
-            <font-awesome-icon
-              class="fav-icon"
-              :icon="['fas', 'heart']"
-              @click="toggleFavorite(item)"
-            />
-          </td>
-          <td>
-            <span class="name" @click="playTrack(item)">
-              {{ item.name }}
-            </span>
-          </td>
-          <td>-</td>
-          <td>-</td>
-          <td>{{ formattedCreatedAt(item) }}</td>
-        </tr>
-      </table>
 
-      <p v-else class="empty my-10">No item</p>
+    <div class="table-container">
+      <div v-for="item in data" :key="item.id" class="card">
+        <div class="card">
+          <img
+            class="card__image"
+            :src="item.imageUrl"
+            :alt="item.name"
+            @click="playTrack(item)"
+          />
+          <div class="card__content">
+            <div>
+              <p class="font-bold name" @click="playTrack(item)">
+                {{ item.name }}
+              </p>
+              <p class="misc">Song &middot; Alan Walker</p>
+            </div>
+            <button class="icon">
+              <font-awesome-icon class="misc" :icon="['fas', 'heart']" />
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -68,82 +60,59 @@ export default {
 
 <style lang="scss" scoped>
 .table-container {
-  overflow-x: auto;
-  font-size: 14px;
-}
-.empty {
-  color: #72727d;
-  text-align: center;
-}
-table {
-  width: 100%;
-  text-align: left;
-
-  .name {
-    cursor: pointer;
-  }
-  td {
-    font-size: 14px;
-  }
+  margin-top: 3rem;
 
   @media (max-width: 768px) {
-    td {
-      min-width: 30px;
-    }
+    margin-top: 2rem;
+  }
+}
+
+.card {
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-size: 14px;
+
+  @media (max-width: 768px) {
+    margin-bottom: 10px;
   }
 
-  th {
-    color: #72727d;
-    text-transform: uppercase;
-
-    &.sn {
-      width: 5%;
-    }
-
-    &.fav {
-      width: 5%;
-    }
-
-    &.name {
-      width: 30%;
-    }
-    &.artist,
-    &.album,
-    &.l {
-      width: 20%;
-    }
-
-    @media (max-width: 768px) {
-      &.fav {
-        min-width: 50px;
-      }
-      &.name {
-        min-width: 150px;
-      }
-      &.artist,
-      &.album,
-      &.l {
-        min-width: 100px;
-      }
-    }
+  &:hover .icon {
+    opacity: 1;
+    pointer-events: all;
   }
 
-  td,
-  th {
-    padding: 1rem 0;
-  }
-
-  .sn {
-    color: #72727d;
-  }
-
-  .fav-icon {
-    @apply text-primary;
+  &__image {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    margin-right: 1rem;
+    border-radius: 5px;
     cursor: pointer;
   }
 
-  tr {
-    border-bottom: 1px solid #32323d;
+  &__content {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .name {
+      cursor: pointer;
+    }
+  }
+
+  .icon {
+    opacity: 0;
+    transition: 0.3s;
+    pointer-events: none;
+
+    @media (max-width: 768px) {
+      opacity: 1;
+      pointer-events: all;
+    }
   }
 }
 </style>

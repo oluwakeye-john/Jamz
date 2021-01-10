@@ -108,6 +108,8 @@ export default {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 1.5rem;
+
+    z-index: 4;
   }
 }
 

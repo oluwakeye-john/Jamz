@@ -96,4 +96,8 @@ body {
   transition: color 0.3s;
   transition-delay: 0.5s;
 }
+
+.misc {
+  color: #72727d;
+}
 </style>
