@@ -14,7 +14,14 @@
     <div v-swiper="swiperOption">
       <div class="swiper-wrapper">
         <div v-for="(item, index) in data" :key="index" class="swiper-slide">
-          <card :type="type" :item="item" :circular="circular" />
+          <div v-if="type === 'song'">
+            <card :type="type" :item="item" :circular="circular" />
+          </div>
+          <div v-else-if="type === 'artist'">
+            <nuxt-link :to="getArtistLink(item._id)">
+              <card :type="type" :item="item" :circular="circular" />
+            </nuxt-link>
+          </div>
         </div>
       </div>
     </div>
@@ -71,6 +78,9 @@ export default {
     },
     handlePrev() {
       this.$swiper.slidePrev()
+    },
+    getArtistLink(id) {
+      return `/artist/${id}`
     },
   },
 }

@@ -9,6 +9,7 @@ export default {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' },
+      { name: 'theme-color', content: '#23232D' },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
@@ -58,11 +59,11 @@ export default {
   },
 
   pwa: {
-    meta: {
-      theme_color: '#23232D',
-    },
-    manifest: {
-      theme_color: '#23232D',
-    },
+    // meta: {
+    //   theme_color: '#23232D',
+    // },
+    // manifest: {
+    //   theme_color: '#23232D',
+    // },
   },
 }

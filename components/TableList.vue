@@ -2,7 +2,7 @@
   <div>
     <h1 class="mt-0 mb-5 text-2xl font-bold">{{ title }}</h1>
 
-    <div class="table-container">
+    <div v-if="data.length" class="table-container">
       <div v-for="item in data" :key="item.id" class="card">
         <div class="card">
           <img
@@ -24,6 +24,10 @@
           </div>
         </div>
       </div>
+    </div>
+
+    <div v-else>
+      <p class="text-center my-10 misc">No item</p>
     </div>
   </div>
 </template>

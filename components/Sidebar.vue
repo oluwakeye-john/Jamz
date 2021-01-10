@@ -42,7 +42,7 @@ export default {
         // { name: 'Browse', path: '/browse', icon: 'search' },
         { name: 'Favorites', path: '/favorite', icon: 'heart' },
         { name: 'Recent', path: '/recent', icon: 'clock' },
-        { name: 'About', path: '/about', icon: 'clock' },
+        { name: 'About', path: '/about', icon: 'space-shuttle' },
       ],
     }
   },

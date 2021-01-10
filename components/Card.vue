@@ -1,17 +1,15 @@
 <template>
   <div class="card">
-    <nuxt-link to="/album">
-      <div class="card__image-container">
-        <img :src="item.imageUrl" :class="{ circular: circular }" />
-        <div v-if="type === 'song'" @click="playTrack">
-          <font-awesome-icon :icon="['fas', 'play']" />
-        </div>
+    <div class="card__image-container">
+      <img :src="item.imageUrl" :class="{ circular: circular }" />
+      <div v-if="type === 'song'" @click="playTrack">
+        <font-awesome-icon :icon="['fas', 'play']" />
       </div>
-      <div :class="{ 'text-center': circular }">
-        <p class="text-md font-bold mt-3 mb-1">{{ item.name }}</p>
-        <p class="text-sm my-1 misc">{{ item.name }}</p>
-      </div>
-    </nuxt-link>
+    </div>
+    <div :class="{ 'text-center': circular }">
+      <p class="text-md font-bold mt-3 mb-1">{{ item.name }}</p>
+      <p class="text-sm my-1 misc">{{ item.name }}</p>
+    </div>
   </div>
 </template>
 
@@ -93,7 +91,20 @@ export default {
       border: 0;
 
       &.circular {
+        position: unset;
         border-radius: 50%;
+        margin: 0 auto;
+        width: 190px;
+        height: 190px;
+        @media (max-width: 768px) {
+          width: 140px;
+          height: 140px;
+        }
+
+        @media (max-width: 360px) {
+          width: 130px;
+          height: 130px;
+        }
       }
     }
   }
