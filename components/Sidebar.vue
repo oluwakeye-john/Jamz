@@ -52,11 +52,27 @@ export default {
       isPlaying: (state) => state.player.isPlaying,
     }),
   },
+  watch: {
+    sidebar(newValue) {
+      if (newValue) {
+        window.document.documentElement.style.overflowY = 'hidden'
+      } else {
+        window.document.documentElement.style.overflowY = 'auto'
+      }
+    },
+  },
+  destroyed() {
+    this.resetScroll()
+  },
   methods: {
     ...mapActions({ toggleSidebarAction: 'layout/toggleSidebarAction' }),
 
     closeSidebar() {
       this.toggleSidebarAction(false)
+    },
+
+    resetScroll() {
+      window.document.documentElement.style.overflowY = 'auto'
     },
   },
 }
@@ -66,7 +82,15 @@ export default {
 .sidebar-container {
   width: 250px;
   @media (max-width: 768px) {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 0;
+    min-height: 100vh;
+    height: 100%;
+    transition-delay: 0.2s;
+    z-index: 200;
+    background-color: rgba(0, 0, 0, 0.5);
   }
 }
 
@@ -75,16 +99,23 @@ export default {
   border-width: 1px;
   min-height: 100vh;
   @apply bg-bgColor3;
+
+  height: 100%;
+  padding: 1.5rem;
+
   position: fixed;
   top: 0;
   left: 0;
   height: 100%;
-  padding: 1.5rem;
 
   @media (max-width: 768px) {
+    position: unset;
     transition: 0.3s;
     transform: translateX(-250px);
     z-index: 3;
+
+    min-height: unset;
+    height: 100%;
   }
 
   &__item {
@@ -115,6 +146,15 @@ export default {
 }
 
 .sidebar-open {
-  transform: translateX(0);
+  @media (max-width: 768px) {
+    transform: translateX(0);
+  }
+}
+
+.sidebar-container-open {
+  @media (max-width: 768px) {
+    width: 100%;
+    transition-delay: 0;
+  }
 }
 </style>

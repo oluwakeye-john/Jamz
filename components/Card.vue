@@ -2,7 +2,7 @@
   <div class="card">
     <div class="card__image-container">
       <img :src="item.imageUrl" :class="{ circular: circular }" />
-      <div @click="playTrack">
+      <div v-if="type === 'song'" @click="playTrack">
         <font-awesome-icon :icon="['fas', 'play']" />
       </div>
     </div>
@@ -24,6 +24,10 @@ export default {
     circular: {
       type: Boolean,
       default: false,
+    },
+    type: {
+      type: String,
+      default: 'song',
     },
   },
   methods: {
@@ -83,6 +87,8 @@ export default {
       height: 100%;
       object-fit: cover;
       border-radius: 4px;
+      background-color: #23232d;
+      border: 0;
 
       &.circular {
         border-radius: 50%;

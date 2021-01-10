@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <sidebar />
-    <div style="flex: 1; overflow: hidden" class="mb-16">
+    <div style="flex: 1; overflow-x: hidden" class="mb-16">
       <navbar />
       <div class="content">
         <slot></slot>

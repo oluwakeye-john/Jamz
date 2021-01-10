@@ -4,8 +4,10 @@
     <div v-swiper="swiperOption">
       <div class="swiper-wrapper">
         <div v-for="(item, index) in data" :key="index" class="swiper-slide">
-          <card :item="item" :circular="circular" />
+          <card :type="type" :item="item" :circular="circular" />
         </div>
+        <div class="swiper-button-next" slot="button-next"></div>
+        <div class="swiper-button-prev" slot="button-prev"></div>
       </div>
     </div>
   </div>
@@ -26,6 +28,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    type: {
+      type: String,
+      default: 'song',
+    },
   },
   data() {
     return {
@@ -39,6 +45,10 @@ export default {
           992: {
             slidesPerView: 4,
           },
+        },
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
         },
       },
     }

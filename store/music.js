@@ -1,22 +1,25 @@
 import {
   FAVORITE_KEY,
-  GET_ALL_SONGS,
   TOGGLE_FETCHING,
   GET_FAVORITES,
   RECENT_KEY,
   GET_RECENT,
+  SET_HOME_DATA,
 } from './types'
-import { GET_ALL_SONGS_CALL } from '~/services/types'
+import { GET_TOP_SONGS_CALL, GET_TOP_ARTISTS_CALL } from '~/services/types'
 import storage from '~/services/local-storage'
 
-export const state = () => ({ songs: [], favorites: [], recent: [] })
+export const state = () => ({ home: {}, favorites: [], recent: [] })
 
 export const actions = {
-  async getInitial({ commit }) {
-    commit(TOGGLE_FETCHING, true, { root: true })
-    const response = await this.$axios.$get(GET_ALL_SONGS_CALL)
-    commit(GET_ALL_SONGS, response)
-    commit(TOGGLE_FETCHING, false, { root: true })
+  getInitial({ commit }) {
+    const getHomeSongs = this.$axios.$get(GET_TOP_SONGS_CALL)
+    const getHomeArtists = this.$axios.$get(GET_TOP_ARTISTS_CALL)
+    Promise.all([getHomeSongs, getHomeArtists]).then((response) => {
+      commit(TOGGLE_FETCHING, true, { root: true })
+      commit(SET_HOME_DATA, response)
+      commit(TOGGLE_FETCHING, false, { root: true })
+    })
   },
 
   getFavorites({ commit }) {
@@ -69,8 +72,8 @@ export const actions = {
 }
 
 export const mutations = {
-  [GET_ALL_SONGS](state, data) {
-    state.songs = data
+  [SET_HOME_DATA](state, data) {
+    state.home = data
   },
 
   [GET_FAVORITES](state, data) {

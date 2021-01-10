@@ -9,7 +9,6 @@ export const TOGGLE_LOADING_TRACK = 'TOGGLE_LOADING_TRACK'
 
 export const UP_BY_ONE_SECOND = 'UP_BY_ONE_SECOND'
 
-export const GET_ALL_SONGS = 'GET_ALL_SONGS'
 export const GET_FAVORITES = 'GET_FAVORITES'
 export const GET_RECENT = 'GET_RECENT'
 export const TOGGLE_FAVORITE = 'TOGGLE_FAVORITE'
@@ -18,3 +17,8 @@ export const SET_ITEM = 'SET_ITEM'
 
 export const FAVORITE_KEY = 'favorites'
 export const RECENT_KEY = 'recent'
+
+export const TOGGLE_SEARCH_FETCHING = 'TOGGLE_SEARCH_FETCHING'
+export const SET_SEARCH_RESULT = 'SET_SEARCH_RESULT'
+
+export const SET_HOME_DATA = 'SET_HOME_DATA'

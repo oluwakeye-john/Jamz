@@ -1,17 +1,58 @@
 <template>
-  <div class="input-container text-lightText">
+  <form
+    class="input-container text-lightText"
+    tabindex="0"
+    @submit.prevent="searchMain"
+  >
     <font-awesome-icon class="icon" :icon="['fas', 'search']" />
-    <input placeholder="Search..." />
-    <div class="suggestion-container">
-      <p v-for="(_, index) in 6" :key="index" class="suggestion-item">
-        Hello world
+    <input v-model="input" placeholder="Search..." />
+    <div v-if="data.length" class="suggestion-container">
+      <p v-for="(item, index) in data" :key="index" class="suggestion-item">
+        {{ item.name }}
       </p>
     </div>
-  </div>
+  </form>
 </template>
 
 <script>
-export default {}
+import { SEARCH_CALL } from '../services/types'
+export default {
+  data() {
+    return {
+      data: [],
+      input: '',
+    }
+  },
+  watch: {
+    // input(newValue) {
+    //   if (newValue) {
+    //     this.searchSuggestion(newValue)
+    //   } else {
+    //     this.input = ''
+    //     this.data = []
+    //   }
+    // },
+  },
+  methods: {
+    async searchSuggestion(val) {
+      try {
+        const response = await this.$axios.get(SEARCH_CALL(val))
+        if (response.data) {
+          if (this.input) {
+            this.data = response.data
+          }
+        } else {
+          this.data = []
+        }
+      } catch {
+        this.data = []
+      }
+    },
+    searchMain() {
+      this.$router.push(`/search/${this.input}`)
+    },
+  },
+}
 </script>
 
 <style lang="scss" scoped>
@@ -22,6 +63,10 @@ export default {}
   font-size: 14px;
 
   z-index: 4;
+
+  &:focus {
+    outline: none;
+  }
 
   @media (max-width: 768px) {
     width: unset;
@@ -34,17 +79,14 @@ export default {}
     }
   }
 
+  &:focus-within .suggestion-container {
+    display: block;
+  }
+
   input {
     background-color: transparent;
     &:focus {
       outline: none;
-    }
-    &:focus + .suggestion-container {
-      /* display: block; */
-    }
-
-    &::placeholder {
-      /* color: #fff; */
     }
   }
 
@@ -58,10 +100,9 @@ export default {}
     display: none;
     border-radius: 4px;
 
-    &:hover,
-    &:focus,
-    &:focus-within {
-      /* display: block; */
+    &:active,
+    &:focus {
+      display: block;
     }
   }
 
