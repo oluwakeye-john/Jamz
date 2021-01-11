@@ -3,7 +3,7 @@
     <div class="close-button" @click="handleClose">
       <font-awesome-icon :icon="['fas', 'chevron-down']" />
     </div>
-    <div class="modal-image"><img :src="data.imageUrl" /></div>
+    <div class="modal-image"><img :src="imageSrc(data.imageUrl)" /></div>
     <h2 class="text-2xl my-5 font-bold">{{ data.name }}</h2>
 
     <controls :expanded="true" />
@@ -24,6 +24,7 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
+import { getPublicId } from '~/utils/image'
 export default {
   props: {
     data: {
@@ -43,6 +44,17 @@ export default {
     },
     toggleFavorite() {
       this.toggleFavoriteAction(this.data)
+    },
+    imageSrc(url) {
+      if (url) {
+        return this.$cloudinary.image.url(getPublicId(url), {
+          width: '400',
+          height: 400,
+          crop: 'fill',
+        })
+      } else {
+        return ''
+      }
     },
   },
 }

@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <div class="card__image-container">
-      <img :src="item.imageUrl" :class="{ circular: circular }" />
+      <img :src="imageSrc(item.imageUrl)" :class="{ circular: circular }" />
       <div v-if="type === 'song'" @click="playTrack">
         <font-awesome-icon :icon="['fas', 'play']" />
       </div>
@@ -15,6 +15,7 @@
 
 <script>
 import { mapActions } from 'vuex'
+import { getPublicId } from '../utils/image'
 export default {
   props: {
     item: {
@@ -30,10 +31,22 @@ export default {
       default: 'song',
     },
   },
+
   methods: {
     ...mapActions({ setTrack: 'player/setTrack' }),
     playTrack() {
       this.setTrack(this.item)
+    },
+    imageSrc(url) {
+      if (url) {
+        return this.$cloudinary.image.url(getPublicId(url), {
+          width: '400',
+          height: 400,
+          crop: 'fill',
+        })
+      } else {
+        return ''
+      }
     },
   },
 }

@@ -7,7 +7,7 @@
         <div class="card">
           <img
             class="card__image"
-            :src="item.imageUrl"
+            :src="imageSrc(item.imageUrl)"
             :alt="item.name"
             @click="playTrack(item)"
           />
@@ -34,6 +34,7 @@
 
 <script>
 import { mapActions } from 'vuex'
+import { getPublicId } from '~/utils/image'
 export default {
   props: {
     title: {
@@ -57,6 +58,17 @@ export default {
     },
     playTrack(item) {
       this.setTrack(item)
+    },
+    imageSrc(url) {
+      if (url) {
+        return this.$cloudinary.image.url(getPublicId(url), {
+          width: '150',
+          height: 150,
+          crop: 'fill',
+        })
+      } else {
+        return ''
+      }
     },
   },
 }

@@ -62,7 +62,7 @@ export default {
           },
           992: {
             slidesPerView: 4,
-            slidesPerGroup: 4,
+            slidesPerGroup: 2,
           },
         },
         navigation: {
