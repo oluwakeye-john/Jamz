@@ -16,6 +16,7 @@
   display: flex;
   height: 100%;
   width: 100%;
+  max-width: none;
 
   @media (max-width: 768px) {
     display: block;

@@ -40,7 +40,35 @@ export default {
   },
 
   cloudinary: {
-    cloudName: 'johnprops',
+    cloudName: process.env.CLOUD_NAME,
+  },
+
+  loading: {
+    color: '#EF5466',
+    throttle: 50,
+  },
+
+  toast: {
+    position: 'bottom-center',
+    register: [
+      // Register custom toasts
+      {
+        name: 'network_error',
+        message: 'Oops...An error occurred',
+        options: {
+          type: 'error',
+          duration: 3000,
+        },
+      },
+      {
+        name: 'success',
+        message: 'Successful',
+        options: {
+          type: 'success',
+          duration: 3000,
+        },
+      },
+    ],
   },
 
   // Modules (https://go.nuxtjs.dev/config-modules)
@@ -50,7 +78,13 @@ export default {
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
     '@nuxtjs/cloudinary',
+    '@nuxtjs/toast',
   ],
+
+  env: {
+    CLOUD_NAME: process.env.CLOUD_NAME,
+    UPLOAD_PRESET: process.env.UPLOAD_PRESET,
+  },
 
   axios: {
     baseURL: process.env.BASE_URL,

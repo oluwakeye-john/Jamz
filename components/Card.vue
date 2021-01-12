@@ -8,7 +8,7 @@
     </div>
     <div :class="{ 'text-center': circular }">
       <p class="text-md font-bold mt-3 mb-1">{{ item.name }}</p>
-      <p class="text-sm my-1 misc">{{ item.name }}</p>
+      <p class="text-sm my-1 misc">{{ miscString }}</p>
     </div>
   </div>
 </template>
@@ -29,6 +29,18 @@ export default {
     type: {
       type: String,
       default: 'song',
+    },
+  },
+  computed: {
+    miscString() {
+      if (this.type === 'song') {
+        return this.item.artist ? this.item.artist.name : 'Unknown'
+      } else if (this.type === 'artist') {
+        const trackNo = this.item.songs ? this.item.songs.length : 0
+        return `${trackNo} track${trackNo > 1 ? 's' : ''}`
+      } else {
+        return ''
+      }
     },
   },
 

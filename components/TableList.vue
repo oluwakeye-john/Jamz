@@ -16,7 +16,7 @@
               <p class="font-bold name" @click="playTrack(item)">
                 {{ item.name }}
               </p>
-              <p class="misc">Song &middot; Alan Walker</p>
+              <p class="misc">Song &middot; {{ songArtist(item) }}</p>
             </div>
             <button class="icon">
               <font-awesome-icon class="misc" :icon="['fas', 'heart']" />
@@ -69,6 +69,10 @@ export default {
       } else {
         return ''
       }
+    },
+    songArtist(item) {
+      console.log(item)
+      return item.artist ? item.artist.name : 'unknown'
     },
   },
 }

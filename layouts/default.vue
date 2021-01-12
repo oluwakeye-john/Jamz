@@ -94,7 +94,8 @@ body {
 .active {
   @apply text-primary;
   transition: color 0.3s;
-  transition-delay: 0.5s;
+
+  animation: shake 0.5s 1 ease-in-out;
 }
 
 .misc {
