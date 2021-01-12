@@ -10,6 +10,7 @@
             class="logo"
             :class="{ dance: isPlaying }"
             :icon="['fas', 'headphones']"
+            @click="closeSidebar"
           />
           <span class="ml-2">Jamz</span>
         </nuxt-link>

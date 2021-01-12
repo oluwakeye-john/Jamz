@@ -4,7 +4,7 @@
       <div class="artist-meta">
         <img class="artist-image" :src="imageSrc(artist.imageUrl)" />
         <div>
-          <p class="text-3xl font-bold">{{ artist.name }}</p>
+          <p class="text-2xl md:text-3xl font-bold">{{ artist.name }}</p>
           <!-- <p class="misc text-sm">493,596 fans</p> -->
         </div>
       </div>
