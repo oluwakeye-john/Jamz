@@ -2,7 +2,6 @@
   <div
     :class="{
       'expand-bottom-nav': isMobileOpen,
-      'disable-nav': !isReadyToPlay,
     }"
     class="bottom-container border-border"
   >

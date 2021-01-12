@@ -8,8 +8,7 @@
         :circular="true"
         type="artist"
       />
-      <slide-list title="Today, we made for you" :data="home[0]" />
-      <!-- <slide-list title="Top Picks" :data="home[0]" /> -->
+      <slide-list title="Today's mix" :data="home[0]" />
     </div>
     <page-spinner v-else />
   </base-layout>

@@ -71,7 +71,6 @@ export default {
       }
     },
     songArtist(item) {
-      console.log(item)
       return item.artist ? item.artist.name : 'unknown'
     },
   },
