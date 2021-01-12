@@ -139,7 +139,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: 0.3s;
+  /* transition: 0.3s; */
 
   max-height: 20vh;
   @media (max-width: 768px) {

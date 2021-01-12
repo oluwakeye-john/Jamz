@@ -108,6 +108,7 @@ export default {
   width: 100%;
   height: 100%;
   filter: blur(10rem);
+  -webkit-filter: blur(10rem);
   z-index: -1;
   display: none;
 
