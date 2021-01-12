@@ -20,7 +20,6 @@
             </div>
             <button class="icon" @click="toggleFavorite(item)">
               <font-awesome-icon
-                class="misc"
                 :icon="['fas', 'heart']"
                 :class="{ active: isFavorite(item) }"
               />
@@ -59,14 +58,13 @@ export default {
     ...mapState({
       favorites: (state) => state.music.favorites,
     }),
+    ...mapGetters({ isFavorite: 'music/isFavorite' }),
   },
   methods: {
     ...mapActions({
       toggleFavoriteAction: 'music/toggleFavorite',
       setTrack: 'player/setTrack',
     }),
-
-    ...mapGetters({ isFavorite: 'music/isFavorite' }),
 
     toggleFavorite(item) {
       this.toggleFavoriteAction(item)
