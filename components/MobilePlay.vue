@@ -8,7 +8,8 @@
       <font-awesome-icon :icon="['fas', 'chevron-down']" />
     </div>
     <div class="modal-image"><img :src="imageSrc(data.imageUrl)" /></div>
-    <h2 class="text-2xl my-5 font-bold">{{ data.name }}</h2>
+    <h2 class="text-2xl mt-5 mb-3 font-bold">{{ data.name }}</h2>
+    <p class="text-sm text-gray-500 mb-5">{{ artistName }}</p>
 
     <controls :expanded="true" />
 
@@ -38,6 +39,9 @@ export default {
   },
   computed: {
     ...mapGetters({ isFavorite: 'music/isFavorite' }),
+    artistName() {
+      return this.data.artist ? this.data.artist.name : 'Unknown'
+    },
   },
   methods: {
     ...mapActions({
@@ -71,7 +75,7 @@ export default {
 
   display: none;
   flex-direction: column;
-  padding: 6rem 0;
+  padding: 5rem 0;
   align-items: center;
   position: relative;
 
