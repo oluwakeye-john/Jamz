@@ -5,9 +5,14 @@
     @submit.prevent="searchMain"
   >
     <font-awesome-icon class="icon" :icon="['fas', 'search']" />
-    <input v-model="input" placeholder="Search..." />
+    <input ref="input" v-model="input" placeholder="Search..." />
     <div v-if="data.length" class="suggestion-container">
-      <p v-for="(item, index) in data" :key="index" class="suggestion-item">
+      <p
+        v-for="(item, index) in data"
+        :key="index"
+        class="suggestion-item"
+        @click="populate(item.name)"
+      >
         {{ item.name }}
       </p>
     </div>
@@ -23,15 +28,19 @@ export default {
       input: '',
     }
   },
+
   watch: {
-    // input(newValue) {
-    //   if (newValue) {
-    //     this.searchSuggestion(newValue)
-    //   } else {
-    //     this.input = ''
-    //     this.data = []
-    //   }
-    // },
+    input(newValue) {
+      if (newValue) {
+        this.searchSuggestion(newValue)
+      } else {
+        this.input = ''
+        this.data = []
+      }
+    },
+  },
+  mounted() {
+    this.getInitialInput()
   },
   methods: {
     async searchSuggestion(val) {
@@ -39,7 +48,7 @@ export default {
         const response = await this.$axios.get(SEARCH_CALL(val))
         if (response.data) {
           if (this.input) {
-            this.data = response.data
+            this.data = response.data.slice(0, 5)
           }
         } else {
           this.data = []
@@ -50,6 +59,16 @@ export default {
     },
     searchMain() {
       this.$router.push(`/search/${this.input}`)
+      this.data = []
+    },
+    populate(text) {
+      this.input = text
+      this.$refs.input.blur()
+      this.searchMain()
+    },
+    getInitialInput() {
+      const init = this.$route.params.slug
+      this.input = init || ''
     },
   },
 }
@@ -107,7 +126,9 @@ export default {
   }
 
   .suggestion-item {
-    margin: 1rem 0;
+    padding: 0.5rem 0;
+    margin: 0.5rem 0;
+    cursor: pointer;
   }
 }
 </style>

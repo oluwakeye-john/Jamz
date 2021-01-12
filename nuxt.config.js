@@ -45,7 +45,6 @@ export default {
 
   loading: {
     color: '#EF5466',
-    throttle: 50,
   },
 
   generate: {
