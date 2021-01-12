@@ -18,8 +18,12 @@
               </p>
               <p class="misc">Song &middot; {{ songArtist(item) }}</p>
             </div>
-            <button class="icon">
-              <font-awesome-icon class="misc" :icon="['fas', 'heart']" />
+            <button class="icon" @click="toggleFavorite(item)">
+              <font-awesome-icon
+                class="misc"
+                :icon="['fas', 'heart']"
+                :class="{ active: isFavorite(item) }"
+              />
             </button>
           </div>
         </div>
@@ -27,13 +31,18 @@
     </div>
 
     <div v-else>
-      <p class="text-center my-10 misc">No item</p>
+      <div class="illaustration">
+        <img src="~/assets/empty.svg" alt="empty" />
+      </div>
+      <div class="text-center text-sm misc">
+        <p>No item.</p>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapState, mapGetters } from 'vuex'
 import { getPublicId } from '~/utils/image'
 export default {
   props: {
@@ -46,12 +55,23 @@ export default {
       default: () => [],
     },
   },
-
+  computed: {
+    ...mapState({
+      favorites: (state) => state.music.favorites,
+    }),
+  },
   methods: {
     ...mapActions({
-      toggleFavorite: 'music/toggleFavorite',
+      toggleFavoriteAction: 'music/toggleFavorite',
       setTrack: 'player/setTrack',
     }),
+
+    ...mapGetters({ isFavorite: 'music/isFavorite' }),
+
+    toggleFavorite(item) {
+      this.toggleFavoriteAction(item)
+    },
+
     formattedCreatedAt(item) {
       const t = new Date(item.createdAt)
       return t.toLocaleDateString()
@@ -83,6 +103,14 @@ export default {
 
   @media (max-width: 768px) {
     margin-top: 2rem;
+  }
+}
+
+.illaustration {
+  width: 10rem;
+  margin: 3rem auto;
+  img {
+    width: 100%;
   }
 }
 
@@ -131,6 +159,10 @@ export default {
     @media (max-width: 768px) {
       opacity: 1;
       pointer-events: all;
+    }
+
+    &:focus {
+      outline: none;
     }
   }
 }
