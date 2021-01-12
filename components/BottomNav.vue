@@ -106,7 +106,7 @@ export default {
   @media (max-width: 768px) {
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 1.5rem;
+    padding: 0.7rem 1.5rem;
 
     z-index: 4;
   }
