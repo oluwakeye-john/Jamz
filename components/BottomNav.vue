@@ -8,7 +8,7 @@
   >
     <div class="progress-border" :style="progressBorder" />
 
-    <div class="img-preview">
+    <div class="img-preview" @click="toggleMobileOpen">
       <img :src="item.imageUrl" />
     </div>
     <controls />
@@ -69,12 +69,24 @@ export default {
       return this.src && this.src.length
     },
 
+    flooredDuration() {
+      return Math.floor(this.currentTrack.duration)
+    },
+
     artistName() {
       return this.item.artist ? this.item.artist.name : ''
     },
 
     progressBorder() {
-      return { width: `${this.currentTrack.currentTime}px` }
+      if (this.currentTrack.currentTime && this.currentTrack.duration) {
+        return {
+          width: `${
+            (this.currentTrack.currentTime / this.currentTrack.duration) * 100
+          }%`,
+        }
+      } else {
+        return { width: 0 }
+      }
     },
   },
   watch: {
