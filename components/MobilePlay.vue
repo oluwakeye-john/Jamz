@@ -1,5 +1,9 @@
 <template>
   <div class="modal-container">
+    <div class="blurred-background">
+      <img :src="data.imageUrl" />
+    </div>
+
     <div class="close-button" @click="handleClose">
       <font-awesome-icon :icon="['fas', 'chevron-down']" />
     </div>
@@ -95,5 +99,24 @@ export default {
   bottom: 0;
   right: 0;
   padding: 1rem;
+}
+
+.blurred-background {
+  @media (max-width: 768px) {
+    display: block;
+  }
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  filter: blur(10rem);
+  z-index: -1;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 }
 </style>

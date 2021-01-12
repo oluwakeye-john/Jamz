@@ -150,7 +150,7 @@ export default {
     top: 0;
     left: 0;
     height: 2px;
-    transition: 0.1s;
+    transition: 0.2s;
     background-color: #ef5466;
   }
 }
