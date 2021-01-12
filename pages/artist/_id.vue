@@ -5,11 +5,11 @@
         <img class="artist-image" :src="imageSrc(artist.imageUrl)" />
         <div>
           <p class="text-3xl font-bold">{{ artist.name }}</p>
-          <p class="misc text-sm">493,596 fans</p>
+          <!-- <p class="misc text-sm">493,596 fans</p> -->
         </div>
       </div>
 
-      <table-list title="Top Songs" :data="songs" />
+      <table-list title="" :data="songs" />
     </div>
     <page-spinner v-else />
   </base-layout>
@@ -95,17 +95,18 @@ export default {
 
   @media (max-width: 768px) {
     flex-direction: column;
+    margin-top: 1.5rem;
   }
 }
 .artist-image {
   margin-right: 2rem;
-  width: 200px;
-  height: 200px;
+  width: 170px;
+  height: 170px;
   border-radius: 50%;
   object-fit: cover;
 
   @media (max-width: 768px) {
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     margin-right: 0;
   }
 }
