@@ -3,12 +3,12 @@
     <div v-if="!fetching">
       <slide-list title="Most Streamed" :data="home[0]" />
       <slide-list
-        title="Pick Artists"
+        title="Today's sauce"
         :data="home[1]"
         :circular="true"
         type="artist"
       />
-      <slide-list title="Today's mix" :data="home[0]" />
+      <!-- <slide-list title="Today's mix" :data="home[0]" /> -->
     </div>
     <page-spinner v-else />
   </base-layout>

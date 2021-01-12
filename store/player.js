@@ -75,8 +75,8 @@ export const actions = {
         // eslint-disable-next-line no-undef
         window.navigator.mediaSession.metadata = new MediaMetadata({
           title: name,
-          artist: 'Drax Lay',
-          album: "Let's yoga",
+          artist: data.artist.name,
+          // album: "Let's yoga",
           artwork: [
             {
               src: data?.imageUrl,
