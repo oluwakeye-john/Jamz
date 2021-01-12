@@ -80,6 +80,17 @@ export default {
   @media (max-width: 768px) {
     display: flex;
   }
+
+  @keyframes fade {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  animation: fade 0.4s 1 ease-in-out alternate;
 }
 
 .modal-image {
