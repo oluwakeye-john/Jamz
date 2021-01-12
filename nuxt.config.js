@@ -48,6 +48,10 @@ export default {
     throttle: 50,
   },
 
+  generate: {
+    fallback: true,
+  },
+
   toast: {
     position: 'bottom-center',
     register: [
