@@ -54,6 +54,7 @@ export default {
         slidesPerView: 2,
         spaceBetween: 30,
         slidesPerGroup: 2,
+        freeMode: true,
         // speed: 600,
         breakpoints: {
           768: {
