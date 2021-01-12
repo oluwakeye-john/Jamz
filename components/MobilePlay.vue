@@ -102,9 +102,6 @@ export default {
 }
 
 .blurred-background {
-  @media (max-width: 768px) {
-    display: block;
-  }
   position: absolute;
   top: 0;
   left: 0;
@@ -112,11 +109,24 @@ export default {
   height: 100%;
   filter: blur(10rem);
   z-index: -1;
+  display: none;
+
+  -webkit-backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000;
+  transform: translate3d(0, 0, 0);
+  transform: translateZ(0);
 
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+  @media (max-width: 768px) {
+    display: block;
   }
 }
 </style>
