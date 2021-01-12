@@ -127,6 +127,15 @@ export default {
   width: 100%;
   padding: 1.5rem 50px;
 
+  -webkit-backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000;
+  transform: translate3d(0, 0, 0);
+  transform: translateZ(0);
+
   display: flex;
   justify-content: space-between;
   align-items: center;
