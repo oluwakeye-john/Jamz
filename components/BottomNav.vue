@@ -6,6 +6,8 @@
     }"
     class="bottom-container border-border"
   >
+    <div class="progress-border" :style="progressBorder" />
+
     <div class="img-preview">
       <img :src="item.imageUrl" />
     </div>
@@ -70,6 +72,10 @@ export default {
     artistName() {
       return this.item.artist ? this.item.artist.name : ''
     },
+
+    progressBorder() {
+      return { width: `${this.currentTrack.currentTime}px` }
+    },
   },
   watch: {
     isMobileOpen(newVal) {
@@ -121,6 +127,19 @@ export default {
     padding: 0.7rem 1.5rem;
 
     z-index: 4;
+  }
+}
+
+.progress-border {
+  display: none;
+  @media (max-width: 768px) {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 2px;
+    transition: 0.1s;
+    background-color: #ef5466;
   }
 }
 
