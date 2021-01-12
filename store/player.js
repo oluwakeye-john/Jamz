@@ -75,7 +75,7 @@ export const actions = {
         // eslint-disable-next-line no-undef
         window.navigator.mediaSession.metadata = new MediaMetadata({
           title: name,
-          artist: data.artist.name,
+          artist: data.artist ? data.artist.name : 'Unknown',
           // album: "Let's yoga",
           artwork: [
             {

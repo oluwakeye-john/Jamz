@@ -2,13 +2,21 @@
   <div
     :class="{
       'expand-bottom-nav': isMobileOpen,
+      'disable-nav': !item.name,
     }"
     class="bottom-container border-border"
   >
+    <div class="img-preview">
+      <img :src="item.imageUrl" />
+    </div>
     <controls />
     <div class="center-nav desktop">
       <div class="track-info" @click="toggleMobileOpen">
-        <p class="track-info__name">{{ currentTrack.name }}</p>
+        <p class="track-info__name">{{ item.name }}</p>
+        <span v-if="artistName" class="mx-0 md:mx-1 hidden md:block">
+          &middot;
+        </span>
+        <p class="misc md:text-white">{{ artistName }}</p>
       </div>
       <slider />
     </div>
@@ -57,6 +65,10 @@ export default {
 
     isReadyToPlay() {
       return this.src && this.src.length
+    },
+
+    artistName() {
+      return this.item.artist ? this.item.artist.name : ''
     },
   },
   watch: {
@@ -130,10 +142,12 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 14px;
 
     @media (max-width: 768px) {
       width: unset;
       padding: 0;
+      flex-direction: column;
       justify-content: flex-start;
     }
 
@@ -194,12 +208,30 @@ export default {
   @media (max-width: 768px) {
     height: 100vh;
     max-height: 100vh;
+
+    .img-preview {
+      display: none;
+    }
   }
 
   & > .desktop {
     @media (max-width: 768px) {
       display: none;
     }
+  }
+}
+
+.img-preview {
+  display: none;
+
+  img {
+    width: 40px;
+    object-fit: cover;
+    height: 40px;
+  }
+
+  @media (max-width: 768px) {
+    display: block;
   }
 }
 </style>
