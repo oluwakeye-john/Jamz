@@ -14,11 +14,11 @@
     <controls />
     <div class="center-nav desktop">
       <div class="track-info" @click="toggleMobileOpen">
-        <p class="track-info__name">{{ item.name }}</p>
+        <p class="track-info__name font-bold">{{ item.name }}</p>
         <span v-if="artistName" class="mx-0 md:mx-1 hidden md:block">
           &middot;
         </span>
-        <p class="md:text-white">{{ artistName }}</p>
+        <p class="misc md:text-white">{{ artistName }}</p>
       </div>
       <slider />
     </div>
