@@ -1,21 +1,22 @@
-# client
+# Jamzz
 
-## Build Setup
+A streaming webapp built with Vue (NuxtJS) and TypeScript.
 
-```bash
-# install dependencies
-$ yarn install
+Below are some of the services used:
 
-# serve with hot reload at localhost:3000
-$ yarn dev
+- Axios to make request to the API
+- Cloudinary for storing and serving images
+- Audio and MetaDate instance available on the window object
+- Fontawesome for ...😃
 
-# build for production and launch server
-$ yarn build
-$ yarn start
+The backend is located at https://github.com/oluwakeye-john/Jamz-API
 
-# generate static project
-$ yarn generate
-```
-.
+## To run locally
 
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+- run `yarn install`
+- rename the .env.example file to .env
+- start the dev servee using `yarn dev`
+
+## Production Build
+
+- run `yarn generate`
