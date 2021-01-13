@@ -19,8 +19,8 @@ export class Player {
       this.audio.addEventListener('ended', onPause)
       this.audio.addEventListener('timeupdate', onTimeUpdate)
 
-      navigator.mediaSession.setActionHandler('play', onPlay)
-      navigator.mediaSession.setActionHandler('pause', onPause)
+      // navigator.mediaSession.setActionHandler('play', onPlay)
+      // navigator.mediaSession.setActionHandler('pause', onPause)
 
       const skipTime = 10 // Time to skip in seconds
 

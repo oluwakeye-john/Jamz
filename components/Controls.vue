@@ -1,9 +1,6 @@
 <template>
   <div class="controls desktop">
     <button disabled class="icon" :class="{ show: expanded }">
-      <font-awesome-icon :icon="['fas', 'random']" />
-    </button>
-    <button disabled class="icon" :class="{ show: expanded }">
       <font-awesome-icon :icon="['fas', 'step-backward']" />
     </button>
     <button
@@ -21,9 +18,6 @@
     </button>
     <button disabled class="icon" :class="{ show: expanded }">
       <font-awesome-icon :icon="['fas', 'step-forward']" />
-    </button>
-    <button disabled class="icon" :class="{ show: expanded }">
-      <font-awesome-icon :icon="['fas', 'heart']" />
     </button>
   </div>
 </template>

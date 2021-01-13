@@ -8,12 +8,26 @@
       <font-awesome-icon :icon="['fas', 'chevron-down']" />
     </div>
     <div class="modal-image"><img :src="imageSrc(data.imageUrl)" /></div>
-    <h2 class="text-2xl mt-5 mb-3 font-bold">{{ data.name }}</h2>
-    <p class="text-sm text-gray-500 mb-5">{{ artistName }}</p>
+
+    <div class="flex justify-between items-center" style="width: 80%">
+      <button class="icon">
+        <font-awesome-icon :icon="['fas', 'random']" />
+      </button>
+      <h2 class="text-2xl mt-6 mb-3 font-bold">{{ data.name }}</h2>
+      <button
+        class="icon"
+        :class="{ active: isFavorite(data) }"
+        @click="toggleFavorite"
+      >
+        <font-awesome-icon :icon="['fas', 'heart']" />
+      </button>
+    </div>
+
+    <span class="text-sm mb-5 text-gray-500">{{ artistName }}</span>
 
     <controls :expanded="true" />
 
-    <div style="width: 80%" class="my-4">
+    <div style="width: 80%" class="my-3">
       <slider :expanded="true" />
     </div>
 
@@ -115,6 +129,10 @@ export default {
   bottom: 0;
   right: 0;
   padding: 1rem;
+}
+
+button:focus {
+  outline: none;
 }
 
 .blurred-background {
