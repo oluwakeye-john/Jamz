@@ -1,4 +1,7 @@
 declare global {
+  interface Navigator {
+    mediaSession: any
+  }
   interface Window {
     cloudinary: any
   }

@@ -14,7 +14,7 @@
     <controls />
     <div class="center-nav desktop">
       <div class="track-info" @click="toggleMobileOpen">
-        <p class="track-info__name font-bold">{{ item.name }}</p>
+        <p class="track-info__name font-bold md:font-normal">{{ item.name }}</p>
         <span v-if="artistName" class="mx-0 md:mx-1 hidden md:block">
           &middot;
         </span>
