@@ -1,6 +1,6 @@
 # Jamzz
 
-A streaming webapp built with Vue (NuxtJS) and TypeScript.
+A streaming webapp built with Vue (NuxtJS), TypeScript and SCSS.
 
 Below are some of the services used:
 
