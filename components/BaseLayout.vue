@@ -7,7 +7,6 @@
         <slot></slot>
       </div>
     </div>
-    <bottom-nav />
   </div>
 </template>
 
