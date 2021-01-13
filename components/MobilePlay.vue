@@ -9,11 +9,11 @@
     </div>
     <div class="modal-image"><img :src="imageSrc(data.imageUrl)" /></div>
 
-    <div class="flex justify-between items-center" style="width: 80%">
+    <div class="flex justify-between items-center mt-6 mb-3" style="width: 80%">
       <button class="icon">
         <font-awesome-icon :icon="['fas', 'random']" />
       </button>
-      <h2 class="text-2xl mt-6 mb-3 font-bold">{{ data.name }}</h2>
+      <h2 class="text-2xl font-bold">{{ data.name }}</h2>
       <button
         class="icon"
         :class="{ active: isFavorite(data) }"

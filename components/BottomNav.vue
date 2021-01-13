@@ -74,7 +74,11 @@ export default {
     },
 
     artistName() {
-      return this.item.artist ? this.item.artist.name : ''
+      return this.item.name
+        ? this.item.artist
+          ? this.item.artist.name
+          : 'Unknown'
+        : ''
     },
 
     progressBorder() {
