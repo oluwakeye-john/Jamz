@@ -1,10 +1,14 @@
 <template>
   <div class="card">
     <div class="card__image-container">
-      <img :src="imageSrc(item.imageUrl)" :class="{ circular: circular }" />
-      <div v-if="type === 'song'" @click="playTrack">
+      <img
+        :src="imageSrc(item.imageUrl)"
+        :class="{ circular: circular }"
+        @click="playTrack"
+      />
+      <!-- <div v-if="type === 'song'" @click="playTrack">
         <font-awesome-icon :icon="['fas', 'play']" />
-      </div>
+      </div> -->
     </div>
     <div :class="{ 'text-center': circular }">
       <p class="text-md font-bold mt-3 mb-1">{{ item.name }}</p>
