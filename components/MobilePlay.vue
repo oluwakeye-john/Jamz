@@ -106,6 +106,7 @@ export default {
     height: 250px;
     object-fit: cover;
     border-radius: 4px;
+    pointer-events: none;
   }
 }
 
@@ -126,6 +127,7 @@ export default {
   -webkit-filter: blur(10rem);
   z-index: -1;
   display: none;
+  pointer-events: none;
 
   -webkit-backface-visibility: hidden;
   -webkit-perspective: 1000;

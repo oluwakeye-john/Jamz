@@ -11,7 +11,7 @@
 
     <vue-slider
       v-model="currentTrack.currentTime"
-      class="progress"
+      class="progress custom-slider"
       :min="0"
       :max="flooredDuration"
       :disabled="!src"

@@ -104,4 +104,8 @@ body {
 .misc {
   color: #72727d;
 }
+
+.custom-slider .vue-slider-process {
+  @apply bg-primary;
+}
 </style>

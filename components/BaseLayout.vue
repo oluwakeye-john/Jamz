@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="base-container">
     <sidebar />
     <div style="flex: 1; overflow-x: hidden" class="mb-16">
       <navbar />
@@ -11,7 +11,7 @@
 </template>
 
 <style lang="scss" scoped>
-.container {
+.base-container {
   display: flex;
   width: 100%;
   max-width: none;
