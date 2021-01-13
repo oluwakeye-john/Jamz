@@ -143,7 +143,6 @@ export default {
 
   max-height: 20vh;
   @media (max-width: 768px) {
-    position: sticky;
     justify-content: space-between;
     align-items: center;
     padding: 0.7rem 1.5rem;
