@@ -19,37 +19,38 @@ export class Player {
       this.audio.addEventListener('ended', onPause)
       this.audio.addEventListener('timeupdate', onTimeUpdate)
 
-      // navigator.mediaSession.setActionHandler('play', onPlay)
-      // navigator.mediaSession.setActionHandler('pause', onPause)
-
       const skipTime = 10 // Time to skip in seconds
 
-      navigator.mediaSession.setActionHandler('seekbackward', () => {
-        if (this.audio) {
-          this.audio.currentTime = Math.max(
-            this.audio.currentTime - skipTime,
-            0
-          )
-        }
-      })
-
-      navigator.mediaSession.setActionHandler('seekforward', () => {
-        if (this.audio) {
-          this.audio.currentTime = Math.min(
-            this.audio.currentTime + skipTime,
-            this.audio.duration
-          )
-        }
-      })
-
-      window.navigator.mediaSession.setActionHandler(
-        'seekto',
-        (details: any) => {
+      try {
+        navigator.mediaSession.setActionHandler('seekbackward', () => {
           if (this.audio) {
-            this.audio.currentTime = details.seekTime
+            this.audio.currentTime = Math.max(
+              this.audio.currentTime - skipTime,
+              0
+            )
           }
-        }
-      )
+        })
+
+        navigator.mediaSession.setActionHandler('seekforward', () => {
+          if (this.audio) {
+            this.audio.currentTime = Math.min(
+              this.audio.currentTime + skipTime,
+              this.audio.duration
+            )
+          }
+        })
+
+        window.navigator.mediaSession.setActionHandler(
+          'seekto',
+          (details: any) => {
+            if (this.audio) {
+              this.audio.currentTime = details.seekTime
+            }
+          }
+        )
+      } catch {
+        //
+      }
     }
   }
 
